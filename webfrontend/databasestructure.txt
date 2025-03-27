@@ -1,0 +1,177 @@
+-- MySQL Workbench Forward Engineering
+
+SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
+SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
+SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
+
+-- -----------------------------------------------------
+-- Schema mydb
+-- -----------------------------------------------------
+
+-- -----------------------------------------------------
+-- Schema mydb
+-- -----------------------------------------------------
+CREATE SCHEMA IF NOT EXISTS `mydb` DEFAULT CHARACTER SET utf8 ;
+USE `mydb` ;
+
+-- -----------------------------------------------------
+-- Table `mydb`.`Users`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `mydb`.`Users` (
+  `IdUser` INT NOT NULL,
+  `login` VARCHAR(45) NULL,
+  `password` VARCHAR(45) NULL,
+  `status` VARCHAR(45) NULL,
+  `jwttoken` VARCHAR(45) NULL,
+  PRIMARY KEY (`IdUser`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `mydb`.`genre`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `mydb`.`genre` (
+  `idgenre` INT NOT NULL,
+  `name` VARCHAR(45) NULL,
+  PRIMARY KEY (`idgenre`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `mydb`.`fims`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `mydb`.`fims` (
+  `idfims` INT NOT NULL,
+  `namefilms` VARCHAR(45) NULL,
+  `image` BLOB NULL,
+  `fimscol` VARCHAR(45) NULL,
+  `years` VARCHAR(45) NULL,
+  `information` VARCHAR(45) NULL,
+  `genre` INT NULL,
+  `raiting` INT NULL,
+  `users` INT NULL,
+  PRIMARY KEY (`idfims`),
+  CONSTRAINT `users`
+    FOREIGN KEY ()
+    REFERENCES `mydb`.`Users` ()
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `genre`
+    FOREIGN KEY ()
+    REFERENCES `mydb`.`genre` ()
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `mydb`.``
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `mydb`.`` (
+)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `mydb`.`actor`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `mydb`.`actor` (
+  `idactor` INT NOT NULL,
+  `name` VARCHAR(45) NULL,
+  PRIMARY KEY (`idactor`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `mydb`.`director`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `mydb`.`director` (
+  `iddirector` INT NOT NULL,
+  `name` VARCHAR(45) NULL,
+  PRIMARY KEY (`iddirector`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `mydb`.`filmstodirector`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `mydb`.`filmstodirector` (
+  `iddirector` INT NOT NULL,
+  `idfilms` INT NULL,
+  PRIMARY KEY (`iddirector`),
+  CONSTRAINT `iddirector`
+    FOREIGN KEY ()
+    REFERENCES `mydb`.`director` ()
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `idfilms`
+    FOREIGN KEY ()
+    REFERENCES `mydb`.`fims` ()
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `mydb`.`filmstoactor`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `mydb`.`filmstoactor` (
+  `idactor` INT NOT NULL,
+  `idfilms` INT NULL,
+  PRIMARY KEY (`idactor`),
+  CONSTRAINT `idfilms`
+    FOREIGN KEY ()
+    REFERENCES `mydb`.`fims` ()
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `idactor`
+    FOREIGN KEY ()
+    REFERENCES `mydb`.`actor` ()
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `mydb`.`favoriteFilms`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `mydb`.`favoriteFilms` (
+  `ididfilms` INT NOT NULL,
+  `idUser` INT NULL,
+  PRIMARY KEY (`ididfilms`),
+  CONSTRAINT `idfilms`
+    FOREIGN KEY ()
+    REFERENCES `mydb`.`fims` ()
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `iduser`
+    FOREIGN KEY ()
+    REFERENCES `mydb`.`Users` ()
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `mydb`.`ViewFilms`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `mydb`.`ViewFilms` (
+  `idUser` INT NOT NULL,
+  `Films` INT NULL,
+  PRIMARY KEY (`idUser`),
+  CONSTRAINT `idFilms`
+    FOREIGN KEY ()
+    REFERENCES `mydb`.`fims` ()
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `idUser`
+    FOREIGN KEY ()
+    REFERENCES `mydb`.`Users` ()
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+SET SQL_MODE=@OLD_SQL_MODE;
+SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
+SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
