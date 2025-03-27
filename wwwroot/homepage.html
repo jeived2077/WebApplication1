@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Каталог Фильмов</title>
+	<link rel="stylesheet" href="style.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+	<div class="container">
+		<aside class="sidebar">
+			<h2>Навигация</h2>
+			<div id="admin-actions" style="display:none;">
+				<h3>Действия Администратора</h3>
+				<button id="add-movie">Добавить фильм</button>
+				<button id="upload-xml">Загрузить XML</button>
+				<button id="download-xml">Выгрузить XML</button>
+			</div>
+			<div id="user-actions" style="display:none;">
+				<h3>Действия Пользователя</h3>
+				<button id="add-movie-user">Добавить фильм</button>
+			</div>
+		</aside>
+
+		<div class="main-content">
+			<header>
+				<h1>Каталог Фильмов</h1>
+				<nav>
+					<span id="user-info" style="display: none;">Привет, <span id="user-login"></span></span>
+					<button id="auth-button">Войти</button>
+				</nav>
+			</header>
+
+			<main>
+				<section id="filters">
+					<h2>Фильтры</h2>
+					<label for="genre">Жанр:</label>
+					<select id="genre">
+						<option value="">Все</option>
+						<!-- Жанры будут динамически заполняться из API -->
+					</select>
+
+					<label for="director">Режиссер:</label>
+					<select id="director">
+						<option value="">Все</option>
+						<!-- Режиссеры будут динамически заполняться из API -->
+					</select>
+
+					<label for="sort">Сортировать по году:</label>
+					<select id="sort">
+						<option value="asc">По возрастанию</option>
+						<option value="desc">По убыванию</option>
+					</select>
+
+					<button id="applyFilters">Применить</button>
+				</section>
+
+				<section id="movie-list">
+					<h2>Список Фильмов</h2>
+					<div class="movie-grid">
+						<!-- Фильмы будут добавляться сюда динамически -->
+						<p id="no-movies-message" style="display:none;">Фильмы не найдены.</p>
+					</div>
+				</section>
+			</main>
+
+			
+		</div>
+	</div>
+
+	<div id="movie-modal" class="modal">
+		<div class="modal-content">
+			<span class="close">×</span>
+			<h2>Добавить/Редактировать Фильм</h2>
+
+			<div class="modal-layout">
+				<!-- Таблица для вывода фильмов (слева) -->
+				<div class="movie-table-container">
+					<h3>Список фильмов</h3>
+					<table id="movie-table" border="1">
+						<thead>
+							<tr>
+								<th>Название</th>
+								<th>Жанр</th>
+								<th>Режиссер</th>
+								<th>Год</th>
+								<th>Актёр</th>
+								<th>Постер</th>
+								<th>Информация</th>
+								<th>Создатель</th> <!-- Меняем "Действие" на "Создатель" -->
+							</tr>
+						</thead>
+						<tbody id="movie-table-body">
+							<!-- Список фильмов будет заполняться динамически -->
+						</tbody>
+					</table>
+				</div>
+
+				<!-- Форма для добавления/редактирования (справа) -->
+				<div class="movie-form-container">
+					<form id="movie-form">
+						<input type="hidden" id="movie-id">
+						<label for="title">Название:</label>
+						<input type="text" id="title" required><br><br>
+
+						<label for="genre-modal">Жанр:</label>
+						<select id="genre-modal" required>
+							<option value="">Выберите жанр</option>
+							<option value="add-new" class="add-new-option">Добавить новый жанр...</option>
+						</select><br><br>
+
+						<label for="director-modal">Режиссеры:</label>
+						<select id="director-modal" multiple>
+							<option value="">Выберите режиссера</option>
+							<option value="add-new" class="add-new-option">Добавить нового режиссера...</option>
+						</select>
+						<div id="selected-directors" class="selected-items"></div><br><br>
+
+						<label for="year">Год:</label>
+						<input type="number" id="year" required><br><br>
+
+						<label for="description">Описание:</label>
+						<textarea id="description" rows="4" cols="50"></textarea><br><br>
+
+						<label for="actors-modal">Актеры:</label>
+						<select id="actors-modal" multiple>
+							<option value="">Выберите актера</option>
+							<option value="add-new" class="add-new-option">Добавить нового актера...</option>
+						</select>
+						<div id="selected-actors" class="selected-items"></div><br><br>
+
+						<label for="poster">Постер:</label>
+						<button type="button" id="upload-poster-btn">Выбрать и загрузить постер</button>
+
+						<div class="modal-buttons">
+							<button type="submit" id="save-button">Сохранить</button>
+							<button type="button" id="update-button" style="display: none;">Обновить</button>
+							<button type="button" id="delete-button" style="display: none;">Удалить</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	</div>
+
+	<div id="movie-detail-modal" class="modal">
+		<div class="modal-content">
+			<span class="close">×</span>
+			<h2 id="detail-title"></h2>
+			<img id="detail-poster" src="" alt="Постер фильма">
+			<p id="detail-director"></p>
+			<p id="detail-actors"></p>
+			<p id="detail-description"></p>
+			<p>Просмотров: <span id="detail-views">0</span></p>
+		</div>
+	</div>
+
+	<div id="auth-modal" class="modal" style="display: none;">
+		<div class="modal-content">
+			<span class="close">×</span>
+			<h2 id="modal-title">Авторизация</h2>
+			<form id="auth-form">
+				<label for="login">Логин:</label>
+				<input type="text" id="login" name="login" required><br><br>
+				<label for="password">Пароль:</label>
+				<input type="password" id="password" name="password" required><br><br>
+				<button type="submit" id="submit-button">Войти</button>
+				<p id="auth-error" style="color: red;"></p>
+				<p><a href="#" id="switch-auth">Перейти к регистрации</a></p>
+			</form>
+		</div>
+	</div>
+
+	<script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,9 @@
+wwwroot\autorization.html
+wwwroot\databasestructure.txt
+wwwroot\filmsdetail.html
+wwwroot\homepage.html
+wwwroot\PageAdmin.html
+wwwroot\Registration.html
+wwwroot\script.js
+wwwroot\staticfilms.html
+wwwroot\style.css

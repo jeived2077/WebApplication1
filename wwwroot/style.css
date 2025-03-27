@@ -1,0 +1,295 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+.container {
+    display: flex;
+    height: 100vh; /* Полная высота окна */
+}
+
+.sidebar {
+    width: 250px; /* Фиксированная ширина боковой панели */
+    background-color: #fff;
+    padding: 1em;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    overflow-y: auto; /* Прокрутка, если контент не помещается */
+}
+
+    .sidebar h2 {
+        margin: 0 0 1em 0;
+        font-size: 1.5em;
+    }
+
+.selected-items {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    margin-top: 5px;
+}
+
+.selected-item {
+    display: inline-flex;
+    align-items: center;
+    background-color: #e0e0e0;
+    padding: 5px 10px;
+    border-radius: 15px;
+    font-size: 14px;
+}
+
+    .selected-item span {
+        margin-right: 5px;
+    }
+
+    .selected-item .remove-item {
+        cursor: pointer;
+        color: red;
+        font-weight: bold;
+    }
+
+.sidebar h3 {
+    margin: 0 0 0.5em 0;
+    font-size: 1.2em;
+}
+
+.main-content {
+    flex: 1; /* Занимает оставшееся пространство */
+    display: flex;
+    flex-direction: column;
+}
+
+header {
+    background-color: #333;
+    color: #fff;
+    padding: 1em;
+    text-align: center;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+    header h1 {
+        margin: 0;
+    }
+
+    header nav button {
+        background-color: #dc3545;
+        color: white;
+        border: none;
+        padding: 0.5em 1em;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+        header nav button:hover {
+            background-color: #c82333;
+        }
+
+main {
+    padding: 1em;
+    flex: 1; /* Растягивается для заполнения пространства */
+    overflow-y: auto; /* Прокрутка контента */
+}
+
+#filters {
+    background-color: #fff;
+    padding: 1em;
+    margin-bottom: 1em;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    gap: 1em;
+    flex-wrap: wrap;
+}
+
+    #filters h2 {
+        margin: 0;
+    }
+
+    #filters label {
+        margin: 0;
+    }
+
+    #filters select {
+        margin: 0;
+        padding: 0.3em;
+    }
+
+    #filters button {
+        margin: 0;
+    }
+
+#movie-list {
+    background-color: #fff;
+    padding: 1em;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.movie-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1em;
+}
+
+.movie-card {
+    border: 1px solid #ddd;
+    padding: 1em;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+
+    .movie-card h3 {
+        margin-top: 0;
+    }
+
+.movie-actions {
+    margin-top: 1em;
+}
+
+button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 0.5em 1em;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    margin: 0.25em 0; /* Вертикальный отступ для кнопок в sidebar */
+    width: 100%; /* Кнопки растягиваются на ширину sidebar */
+    box-sizing: border-box;
+}
+
+    button:hover {
+        background-color: #3e8e41;
+    }
+
+footer {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 1em 0;
+}
+
+/* Стили для edit и delete button */
+.edit-button {
+    background-color: #007bff;
+    color: white;
+}
+
+    .edit-button:hover {
+        background-color: #0056b3;
+    }
+
+.delete-button {
+    background-color: #dc3545;
+    color: white;
+}
+
+    .delete-button:hover {
+        background-color: #c82333;
+    }
+
+/* Стили для модальных окон */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    border-radius: 5px;
+    position: relative;
+}
+
+.close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    color: #aaa;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.modal-content {
+    background-color: #fff;
+    margin: 5% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 1000px; /* Ограничиваем ширину модального окна */
+}
+
+.modal-layout {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px; /* Расстояние между таблицей и формой */
+}
+
+.movie-table-container {
+    flex: 1; /* Таблица занимает доступное пространство */
+    max-width: 50%; /* Ограничиваем ширину таблицы */
+    overflow-x: auto; /* Добавляем горизонтальную прокрутку, если таблица шире */
+}
+
+.movie-form-container {
+    flex: 1; /* Форма занимает доступное пространство */
+    max-width: 50%; /* Ограничиваем ширину формы */
+}
+
+#movie-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+    #movie-table th, #movie-table td {
+        padding: 8px;
+        text-align: left;
+        border: 1px solid #ddd;
+    }
+
+    #movie-table th {
+        background-color: #f2f2f2;
+    }
+
+.modal-buttons {
+    margin-top: 10px;
+}
+
+    .modal-buttons button {
+        margin-right: 10px;
+        padding: 5px 10px;
+    }
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Стили для постера фильма */
+#detail-poster {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 10px;
+}
+
+#detail-modal {
+    overflow-y: auto;
+}
