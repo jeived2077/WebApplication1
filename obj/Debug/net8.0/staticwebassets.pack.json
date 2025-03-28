@@ -25,12 +25,36 @@
       "PackagePath": "staticwebassets\\homepage.html"
     },
     {
+      "Id": "C:\\Users\\jeived\\Desktop\\WebApplication1\\WebApplication1\\wwwroot\\more.html",
+      "PackagePath": "staticwebassets\\more.html"
+    },
+    {
+      "Id": "C:\\Users\\jeived\\Desktop\\WebApplication1\\WebApplication1\\wwwroot\\movie-detail.css",
+      "PackagePath": "staticwebassets\\movie-detail.css"
+    },
+    {
+      "Id": "C:\\Users\\jeived\\Desktop\\WebApplication1\\WebApplication1\\wwwroot\\movie-detail.js",
+      "PackagePath": "staticwebassets\\movie-detail.js"
+    },
+    {
       "Id": "C:\\Users\\jeived\\Desktop\\WebApplication1\\WebApplication1\\wwwroot\\script.js",
       "PackagePath": "staticwebassets\\script.js"
     },
     {
       "Id": "C:\\Users\\jeived\\Desktop\\WebApplication1\\WebApplication1\\wwwroot\\staticfilms.html",
       "PackagePath": "staticwebassets\\staticfilms.html"
+    },
+    {
+      "Id": "C:\\Users\\jeived\\Desktop\\WebApplication1\\WebApplication1\\wwwroot\\statistics.css",
+      "PackagePath": "staticwebassets\\statistics.css"
+    },
+    {
+      "Id": "C:\\Users\\jeived\\Desktop\\WebApplication1\\WebApplication1\\wwwroot\\statistics.html",
+      "PackagePath": "staticwebassets\\statistics.html"
+    },
+    {
+      "Id": "C:\\Users\\jeived\\Desktop\\WebApplication1\\WebApplication1\\wwwroot\\statistics.js",
+      "PackagePath": "staticwebassets\\statistics.js"
     },
     {
       "Id": "C:\\Users\\jeived\\Desktop\\WebApplication1\\WebApplication1\\wwwroot\\style.css",

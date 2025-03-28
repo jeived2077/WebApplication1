@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Статистика Фильмов</title>
+    <link rel="stylesheet" href="statistics.css">
+</head>
+<body>
+    <header>
+        <h1>Статистика Фильмов</h1>
+        <a href="homepage.html">Вернуться к каталогу</a>
+    </header>
+
+    <main>
+        <section id="genre-sort">
+            <h2>Статистика по жанрам</h2>
+            <label for="sort-genre">Жанр:</label>
+            <select id="sort-genre">
+                <option value="asc">По возрастанию</option>
+                <option value="desc">По убыванию</option>
+            </select>
+            <ul id="genre-list">
+                <!-- Отсортированный список фильмов по жанру -->
+            </ul>
+        </section>
+
+        <section id="director-stats">
+            <h2>Статистика по режисерам</h2>
+            <label for="sort-rej">Режисер:</label>
+            <select id="sort-rej">
+                <option value="asc">По возрастанию</option>
+                <option value="desc">По убыванию</option>
+            </select>
+            <ul id="rej-list">
+                <!-- Отсортированный список фильмов по режисеру -->
+            </ul>
+            </div>
+        </section>
+
+        <section id="year-sort">
+            <h2>Сортировка по Году</h2>
+            <label for="sort-year">Сортировать фильмы по году:</label>
+            <select id="sort-year">
+                <option value="asc">По возрастанию</option>
+                <option value="desc">По убыванию</option>
+            </select>
+            <ul id="year-list">
+                <!-- Отсортированный список фильмов по году -->
+            </ul>
+        </section>
+    </main>
+
+    
+
+    <script src="statistics.js"></script>
+</body>
+</html>

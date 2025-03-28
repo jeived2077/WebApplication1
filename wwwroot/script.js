@@ -1,42 +1,152 @@
 const BASE_URL = "http://localhost:5184";
 let token = localStorage.getItem("jwtToken");
 
-const userInfo = document.getElementById("user-info");
-const userLoginSpan = document.getElementById("user-login");
-const authButton = document.getElementById("auth-button");
-const authModal = document.getElementById("auth-modal");
-const movieModal = document.getElementById("movie-modal");
-const closeModalButtons = document.getElementsByClassName("close");
-const authForm = document.getElementById("auth-form");
-const modalTitle = document.getElementById("modal-title");
-const submitButton = document.getElementById("submit-button");
-const authError = document.getElementById("auth-error");
-const switchAuth = document.getElementById("switch-auth");
-const adminActions = document.getElementById("admin-actions");
-const userActions = document.getElementById("user-actions");
-const movieGrid = document.querySelector(".movie-grid");
-const noMoviesMessage = document.getElementById("no-movies-message");
-const addMovieButton = document.getElementById("add-movie");
-const addMovieUserButton = document.getElementById("add-movie-user");
-const movieForm = document.getElementById("movie-form");
+const elements = {
+    userInfo: document.getElementById("user-info"),
+    userLoginSpan: document.getElementById("user-login"),
+    authButton: document.getElementById("auth-button"),
+    authModal: document.getElementById("auth-modal"),
+    movieModal: document.getElementById("movie-modal"),
+    closeModalButtons: document.getElementsByClassName("close"),
+    authForm: document.getElementById("auth-form"),
+    modalTitle: document.getElementById("modal-title"),
+    submitButton: document.getElementById("submit-button"),
+    authError: document.getElementById("auth-error"),
+    switchAuth: document.getElementById("switch-auth"),
+    adminActions: document.getElementById("admin-actions"),
+    userActions: document.getElementById("user-actions"),
+    movieGrid: document.querySelector(".movie-grid"),
+    noMoviesMessage: document.getElementById("no-movies-message"),
+    addMovieButton: document.getElementById("add-movie"),
+    addMovieUserButton: document.getElementById("add-movie-user"),
+    movieForm: document.getElementById("movie-form"),
+    genreSelect: document.getElementById("genre"),
+    directorSelect: document.getElementById("director"),
+    sortSelect: document.getElementById("sort"),
+    applyFiltersButton: document.getElementById("applyFilters"),
+    saveButton: document.getElementById("save-button"),
+    updateButton: document.getElementById("update-button"),
+    deleteButton: document.getElementById("delete-button"),
+    movieTableBody: document.getElementById("movie-table-body"),
+    uploadPosterButton: document.getElementById("upload-poster-btn"),
+    posterInput: document.getElementById("poster"),
+    posterStatus: document.getElementById("poster-status"),
+    directorModal: document.getElementById("director-modal"),
+    actorsModal: document.getElementById("actors-modal"),
+    selectedDirectors: document.getElementById("selected-directors"),
+    selectedActors: document.getElementById("selected-actors"),
+    genreModal: document.getElementById("genre-modal"),
+    selectedGenres: document.getElementById("selected-genres"),
+    statisticFilms: document.getElementById("statistic_films") // Переименовал StaticFilms на statisticFilms для соответствия HTML
+};
 
-const genreSelect = document.getElementById("genre");
-const directorSelect = document.getElementById("director");
-const sortSelect = document.getElementById("sort");
-const applyFiltersButton = document.getElementById("applyFilters");
-
-const saveButton = document.getElementById("save-button");
-const updateButton = document.getElementById("update-button");
-const deleteButton = document.getElementById("delete-button");
-const movieTableBody = document.getElementById("movie-table-body");
-
+let selectedGenresList = [];
 let isLoginMode = true;
 let allMovies = [];
 let allGenres = [];
 let allDirectors = [];
 let allActors = [];
 let selectedMovieId = null;
-let selectedPoster = null;
+let uploadedPoster = null;
+let selectedDirectorsList = [];
+let selectedActorsList = [];
+elements.statisticFilms.onclick = ShowStaticsFilms;
+function ShowStaticsFilms(){
+    window.location = "statistics.html";
+}
+async function addGenre() {
+    const genreName = prompt("Введите название жанра:");
+    if (!genreName) return;
+
+    try {
+        const response = await fetch(`${BASE_URL}/api/genres`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${token}`
+            },
+            body: JSON.stringify({ name: genreName })
+        });
+
+        const result = await response.json();
+        if (response.ok && result.success) {
+            alert(result.message);
+            await loadMovies();
+            populateSelect(elements.genreModal, allGenres, true);
+            selectedGenresList.push(genreName);
+            updateSelectedItems(elements.selectedGenres, selectedGenresList, "genres");
+        } else {
+            alert(result.message);
+        }
+    } catch (error) {
+        console.error("Ошибка при добавлении жанра:", error);
+        alert(`Ошибка запроса: ${error.message}`);
+    }
+}
+
+async function addDirector() {
+    const firstName = prompt("Введите имя режиссёра:");
+    const lastName = prompt("Введите фамилию режиссёра:");
+    if (!firstName || !lastName) return;
+
+    try {
+        const response = await fetch(`${BASE_URL}/api/directors`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${token}`
+            },
+            body: JSON.stringify({ firstName, lastName })
+        });
+
+        const result = await response.json();
+        if (response.ok && result.success) {
+            alert(result.message);
+            await loadMovies();
+            populateSelect(elements.directorModal, allDirectors, true);
+            const fullName = `${firstName} ${lastName}`.trim();
+            selectedDirectorsList.push(fullName);
+            updateSelectedItems(elements.selectedDirectors, selectedDirectorsList, "directors");
+        } else {
+            alert(result.message);
+        }
+    } catch (error) {
+        console.error("Ошибка при добавлении режиссёра:", error);
+        alert(`Ошибка запроса: ${error.message}`);
+    }
+}
+
+async function addActor() {
+    const firstName = prompt("Введите имя актёра:");
+    const lastName = prompt("Введите фамилию актёра:");
+    if (!firstName || !lastName) return;
+
+    try {
+        const response = await fetch(`${BASE_URL}/api/actors`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${token}`
+            },
+            body: JSON.stringify({ firstName, lastName })
+        });
+
+        const result = await response.json();
+        if (response.ok && result.success) {
+            alert(result.message);
+            await loadMovies();
+            populateSelect(elements.actorsModal, allActors, true);
+            const fullName = `${firstName} ${lastName}`.trim();
+            selectedActorsList.push(fullName);
+            updateSelectedItems(elements.selectedActors, selectedActorsList, "actors");
+        } else {
+            alert(result.message);
+        }
+    } catch (error) {
+        console.error("Ошибка при добавлении актёра:", error);
+        alert(`Ошибка запроса: ${error.message}`);
+    }
+}
 
 function checkAuth() {
     if (token) {
@@ -45,19 +155,20 @@ function checkAuth() {
             const login = payload["http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name"] || payload["name"];
             const role = payload["http://schemas.microsoft.com/ws/2008/06/identity/claims/role"] || payload["role"];
             const userId = payload["http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier"];
+            
             if (!login) throw new Error("Логин не найден в токене");
 
-            userLoginSpan.textContent = login;
-            userInfo.style.display = "inline";
-            authButton.textContent = "Выйти";
-            authButton.onclick = logout;
+            elements.userLoginSpan.textContent = login;
+            elements.userInfo.style.display = "inline";
+            elements.authButton.textContent = "Выйти";
+            elements.authButton.onclick = logout;
 
             if (role === "admin") {
-                adminActions.style.display = "block";
-                userActions.style.display = "none";
+                elements.adminActions.style.display = "block";
+                elements.userActions.style.display = "none";
             } else if (role === "user") {
-                adminActions.style.display = "none";
-                userActions.style.display = "block";
+                elements.adminActions.style.display = "none";
+                elements.userActions.style.display = "block";
             }
 
             localStorage.setItem("userId", userId);
@@ -66,36 +177,36 @@ function checkAuth() {
             logout();
         }
     } else {
-        userInfo.style.display = "none";
-        authButton.textContent = "Войти";
-        authButton.onclick = showAuthModal;
-        adminActions.style.display = "none";
-        userActions.style.display = "none";
+        elements.userInfo.style.display = "none";
+        elements.authButton.textContent = "Войти";
+        elements.authButton.onclick = showAuthModal;
+        elements.adminActions.style.display = "none";
+        elements.userActions.style.display = "none";
     }
 }
 
 function showAuthModal() {
-    authModal.style.display = "block";
-    modalTitle.textContent = "Авторизация";
-    submitButton.textContent = "Войти";
+    elements.authModal.style.display = "block";
+    elements.modalTitle.textContent = "Авторизация";
+    elements.submitButton.textContent = "Войти";
     isLoginMode = true;
-    authError.textContent = "";
+    elements.authError.textContent = "";
 }
 
-for (let closeButton of closeModalButtons) {
-    closeButton.onclick = function () {
+Array.from(elements.closeModalButtons).forEach(button => {
+    button.onclick = function() {
         const modal = this.closest(".modal");
         if (modal) modal.style.display = "none";
     };
-}
+});
 
-switchAuth.onclick = function (e) {
+elements.switchAuth.onclick = function(e) {
     e.preventDefault();
     isLoginMode = !isLoginMode;
-    modalTitle.textContent = isLoginMode ? "Авторизация" : "Регистрация";
-    submitButton.textContent = isLoginMode ? "Войти" : "Зарегистрироваться";
-    switchAuth.textContent = isLoginMode ? "Перейти к регистрации" : "Перейти к авторизации";
-    authError.textContent = "";
+    elements.modalTitle.textContent = isLoginMode ? "Авторизация" : "Регистрация";
+    elements.submitButton.textContent = isLoginMode ? "Войти" : "Зарегистрироваться";
+    elements.switchAuth.textContent = isLoginMode ? "Перейти к регистрации" : "Перейти к авторизации";
+    elements.authError.textContent = "";
 };
 
 function logout() {
@@ -106,7 +217,7 @@ function logout() {
     loadMovies();
 }
 
-authForm.onsubmit = async function (e) {
+elements.authForm.onsubmit = async function(e) {
     e.preventDefault();
     const login = document.getElementById("login").value;
     const password = document.getElementById("password").value;
@@ -123,14 +234,14 @@ authForm.onsubmit = async function (e) {
         if (response.ok) {
             token = text;
             localStorage.setItem("jwtToken", token);
-            authModal.style.display = "none";
+            elements.authModal.style.display = "none";
             checkAuth();
             loadMovies();
         } else {
-            authError.textContent = text;
+            elements.authError.textContent = text;
         }
     } catch (error) {
-        authError.textContent = `Ошибка запроса: ${error.message}`;
+        elements.authError.textContent = `Ошибка запроса: ${error.message}`;
     }
 };
 
@@ -145,100 +256,126 @@ async function loadMovies() {
         allDirectors = data.directors || [];
         allActors = data.actors || [];
 
-        genreSelect.innerHTML = allGenres.length === 0
-            ? '<option value="">Нету данных</option>'
-            : '<option value="">Все</option>' + allGenres.map(g => `<option value="${g}">${g}</option>`).join('');
-
-        directorSelect.innerHTML = allDirectors.length === 0
-            ? '<option value="">Нету данных</option>'
-            : '<option value="">Все</option>' + allDirectors.map(d => `<option value="${d}">${d}</option>`).join('');
-
+        populateSelect(elements.genreSelect, allGenres);
+        populateSelect(elements.directorSelect, allDirectors);
+        populateSelect(elements.directorModal, allDirectors, true);
+        populateSelect(elements.actorsModal, allActors, true);
+        populateSelect(elements.genreModal, allGenres, true);
+        
         applyFilters();
         populateMovieTable();
     } catch (error) {
         console.error("Ошибка при загрузке данных:", error);
-        movieGrid.innerHTML = "";
-        noMoviesMessage.style.display = "block";
-        noMoviesMessage.textContent = "Ошибка загрузки данных";
-        genreSelect.innerHTML = '<option value="">Нету данных</option>';
-        directorSelect.innerHTML = '<option value="">Нету данных</option>';
+        elements.movieGrid.innerHTML = "";
+        elements.noMoviesMessage.style.display = "block";
+        elements.noMoviesMessage.textContent = "Ошибка загрузки данных";
     }
 }
-const uploadPosterButton = document.getElementById("upload-poster-btn");
-const posterInput = document.getElementById("poster");
-const posterStatus = document.getElementById("poster-status");
 
-// Переменная для хранения загруженного постера (base64)
-let uploadedPoster = null;
+function populateSelect(selectElement, items, addNewOption = false) {
+    if (!selectElement) {
+        console.error("Элемент select не найден");
+        return;
+    }
 
-// Открытие проводника при нажатии на кнопку
-uploadPosterButton.onclick = function () {
-    posterInput.click(); // Программно вызываем клик на скрытый input
+    // Проверяем, является ли текущий элемент genreSelect
+    const isGenreSelect = selectElement === elements.genreSelect;
+
+    // Если это genreSelect и нет данных, оставляем только "Выберите" без "Нету данных"
+    if (isGenreSelect) {
+        selectElement.innerHTML = '<option value="">Выберите</option>' + 
+            items.map(item => `<option value="${item}">${item}</option>`).join('');
+    } else {
+        // Для остальных select сохраняем текущую логику
+        selectElement.innerHTML = items.length === 0
+            ? '<option value="">Нету данных</option>'
+            : '<option value="">Выберите</option>' + items.map(item => `<option value="${item}">${item}</option>`).join('');
+    }
+
+    if (addNewOption) {
+        selectElement.innerHTML += '<option value="add-new">Добавить новый...</option>';
+    }
+}
+
+elements.uploadPosterButton.onclick = function() {
+    elements.posterInput.click();
 };
-posterInput.addEventListener("change", async function (e) {
+
+elements.posterInput.addEventListener("change", function(e) {
     const file = e.target.files[0];
     if (file) {
         const reader = new FileReader();
-        reader.onload = async function (event) {
-            const base64Image = event.target.result; // Получаем base64 изображения
-            try {
-                posterStatus.textContent = "Загрузка...";
-                uploadedPoster = base64Image; // Сохраняем base64 в переменную
-                posterStatus.textContent = "Постер успешно загружен!";
-                posterStatus.style.color = "green";
-            } catch (error) {
-                console.error("Ошибка при загрузке постера:", error);
-                posterStatus.textContent = "Ошибка при загрузке постера";
-                posterStatus.style.color = "red";
-            }
+        reader.onload = function(event) {
+            uploadedPoster = event.target.result;
+            elements.posterStatus.textContent = "Постер успешно загружен!";
+            elements.posterStatus.style.color = "green";
         };
-        reader.readAsDataURL(file); // Читаем файл как Data URL (base64)
+        reader.onerror = function() {
+            elements.posterStatus.textContent = "Ошибка при загрузке постера";
+            elements.posterStatus.style.color = "red";
+        };
+        reader.readAsDataURL(file);
     }
 });
+
 function applyFilters() {
-    const genreFilter = genreSelect.value;
-    const directorFilter = directorSelect.value;
-    const sortOrder = sortSelect.value;
+    const genreFilter = elements.genreSelect.value;
+    const directorFilter = elements.directorSelect.value;
+    const sortOrder = elements.sortSelect.value;
 
     let filteredMovies = [...allMovies];
-    if (genreFilter && genreFilter !== "Нету данных") {
-        filteredMovies = filteredMovies.filter(movie => movie.genre === genreFilter);
+
+    if (selectedGenresList.length > 0) {
+        filteredMovies = filteredMovies.filter(movie => 
+            movie.genres && selectedGenresList.some(genre => 
+                movie.genres.split(", ").includes(genre))
+        );
+    } else if (genreFilter && genreFilter !== "Нету данных") {
+        filteredMovies = filteredMovies.filter(movie => 
+            movie.genres && movie.genres.split(", ").includes(genreFilter));
     }
+
     if (directorFilter && directorFilter !== "Нету данных") {
-        filteredMovies = filteredMovies.filter(movie => movie.directors.split(", ").includes(directorFilter));
+        filteredMovies = filteredMovies.filter(movie => 
+            movie.directors && movie.directors.includes(directorFilter));
     }
 
     if (sortOrder === "asc") {
         filteredMovies.sort((a, b) => parseInt(a.year) - parseInt(b.year));
     } else if (sortOrder === "desc") {
-        filteredMovies.sort((a, b) => parseInt(b.year) - parseInt(a.year));
+        filteredMovies.sort((a, b) => parseInt(b.year) - parseInt(b.year));
     }
 
-    movieGrid.innerHTML = "";
+    elements.movieGrid.innerHTML = "";
     if (filteredMovies.length === 0) {
-        noMoviesMessage.style.display = "block";
-        noMoviesMessage.textContent = "Фильмы не найдены.";
+        elements.noMoviesMessage.style.display = "block";
+        elements.noMoviesMessage.textContent = "Фильмы не найдены.";
         return;
     }
 
-    noMoviesMessage.style.display = "none";
+    elements.noMoviesMessage.style.display = "none";
     filteredMovies.forEach(movie => {
         const movieCard = document.createElement("div");
         movieCard.classList.add("movie-card");
+        movieCard.style.cursor = "pointer";
         movieCard.innerHTML = `
             <h3>${movie.title}</h3>
             <p>Год: ${movie.year}</p>
-            <p>Жанр: ${movie.genre}</p>
-            <p>Режиссеры: ${movie.directors || "Не указано"}</p>
-            <p>Актеры: ${movie.actors || "Не указано"}</p>
+            <p>Жанр: ${movie.genres || "Нет жанров"}</p>
+            <p>Режиссеры: ${movie.directors || "Нет режиссёров"}</p>
+            <p>Актеры: ${movie.actors || "Нет актёров"}</p>
             ${movie.poster ? `<img src="${movie.poster}" alt="${movie.title}" style="max-width: 100%; height: auto;">` : ""}
         `;
-        movieGrid.appendChild(movieCard);
+        movieCard.addEventListener("click", () => {
+            // Переход на страницу подробностей с передачей ID фильма
+            window.location.href = `more.html?id=${movie.id}`;
+        });
+        elements.movieGrid.appendChild(movieCard);
     });
 }
 
 function showMovieModal() {
-    movieModal.style.display = "block";
+    elements.movieModal.style.display = "block";
     resetForm();
     populateMovieTable();
 }
@@ -246,162 +383,101 @@ function showMovieModal() {
 function resetForm() {
     selectedMovieId = null;
     uploadedPoster = null;
+    selectedDirectorsList = [];
+    selectedActorsList = [];
+    selectedGenresList = [];
 
-    const movieIdInput = document.getElementById("movie-id");
-    const titleInput = document.getElementById("title");
-    const yearInput = document.getElementById("year");
-    const descriptionTextarea = document.getElementById("description");
-    const genreModalSelect = document.getElementById("genre-modal");
-    const directorModalSelect = document.getElementById("director-modal");
-    const actorsModalSelect = document.getElementById("actors-modal");
+    document.getElementById("movie-id").value = "";
+    document.getElementById("title").value = "";
+    document.getElementById("year").value = "";
+    document.getElementById("description").value = "";
+    elements.posterInput.value = "";
+    elements.posterStatus.textContent = "";
 
-    if (movieIdInput) movieIdInput.value = "";
-    if (titleInput) titleInput.value = "";
-    if (yearInput) yearInput.value = "";
-    if (descriptionTextarea) descriptionTextarea.value = "";
-    if (posterInput) posterInput.value = ""; // Убедитесь, что posterInput определён
-    if (posterStatus) posterStatus.textContent = ""; // Убедитесь, что posterStatus определён
+    elements.saveButton.style.display = "inline";
+    elements.updateButton.style.display = "none";
+    elements.deleteButton.style.display = "none";
 
-    saveButton.style.display = "inline";
-    updateButton.style.display = "none";
-    deleteButton.style.display = "none";
+    populateSelect(elements.genreModal, allGenres, true);
+    updateSelectedItems(elements.selectedGenres, selectedGenresList, "genres");
+    updateSelectedItems(elements.selectedDirectors, selectedDirectorsList, "directors");
+    updateSelectedItems(elements.selectedActors, selectedActorsList, "actors");
+}
 
-    // Заполнение жанров
-    if (genreModalSelect) {
-        genreModalSelect.innerHTML = '<option value="">Выберите жанр</option>' +
-            (allGenres.length === 0
-                ? '<option value="">Нету данных</option>'
-                : allGenres.map(genre => `<option value="${genre}">${genre}</option>`).join('')) +
-            '<option value="add-new" class="add-new-option">Добавить новый жанр...</option>';
-    }
-
-    // Заполнение режиссёров
-    if (directorModalSelect) {
-        directorModalSelect.innerHTML = '<option value="">Выберите режиссера</option>' +
-            (allDirectors.length === 0
-                ? '<option value="">Нету данных</option>'
-                : allDirectors.map(director => `<option value="${director}">${director}</option>`).join('')) +
-            '<option value="add-new" class="add-new-option">Добавить нового режиссера...</option>';
-    }
-
-    // Заполнение актёров
-    if (actorsModalSelect) {
-        actorsModalSelect.innerHTML = '<option value="">Выберите актера</option>' +
-            (allActors.length === 0
-                ? '<option value="">Нету данных</option>'
-                : allActors.map(actor => `<option value="${actor}">${actor}</option>`).join('')) +
-            '<option value="add-new" class="add-new-option">Добавить нового актера...</option>';
+function updateSelectedItems(container, items, listType) {
+    container.innerHTML = "";
+    if (!items || items.length === 0) {
+        container.innerHTML = "<span>Не выбрано</span>";
+    } else {
+        items.forEach(item => {
+            const div = document.createElement("div");
+            div.className = "selected-item";
+            div.innerHTML = `<span>${item}</span><span class="remove-item">×</span>`;
+            div.querySelector(".remove-item").onclick = () => {
+                if (listType === "genres") {
+                    selectedGenresList = selectedGenresList.filter(i => i !== item);
+                    updateSelectedItems(container, selectedGenresList, "genres");
+                } else if (listType === "directors") {
+                    selectedDirectorsList = selectedDirectorsList.filter(i => i !== item);
+                    updateSelectedItems(container, selectedDirectorsList, "directors");
+                } else if (listType === "actors") {
+                    selectedActorsList = selectedActorsList.filter(i => i !== item);
+                    updateSelectedItems(container, selectedActorsList, "actors");
+                }
+                applyFilters();
+            };
+            container.appendChild(div);
+        });
     }
 }
 
-document.getElementById("director-modal").addEventListener("change", async function (e) {
-    if (e.target.value === "add-new") {
-        const firstName = prompt("Введите имя режиссера:");
-        const lastName = prompt("Введите фамилию режиссера:");
-        if (firstName && lastName) {
-            const newDirector = `${firstName} ${lastName}`;
-            try {
-                const response = await fetch(`${BASE_URL}/api/directors`, {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                        "Authorization": `Bearer ${token}`
-                    },
-                    body: JSON.stringify({ firstName, lastName })
-                });
-                if (response.ok) {
-                    await loadMovies(); // Обновляем все данные
-                    const directorModalSelect = document.getElementById("director-modal");
-                    directorModalSelect.innerHTML = '<option value="">Выберите режиссера</option>' +
-                        allDirectors.map(director => `<option value="${director}">${director}</option>`).join('') +
-                        '<option value="add-new" class="add-new-option">Добавить нового режиссера...</option>';
-                    Array.from(directorModalSelect.options).forEach(opt => {
-                        if (opt.value === newDirector) opt.selected = true;
-                    });
-                } else {
-                    alert("Ошибка при добавлении режиссера");
-                    resetForm();
-                }
-            } catch (error) {
-                console.error("Ошибка:", error);
-                alert("Ошибка при добавлении режиссера");
-                resetForm();
-            }
-        } else {
-            resetForm();
+if (elements.genreModal) {
+    elements.genreModal.onchange = function() {
+        const value = this.value;
+        if (value === "add-new") {
+            addGenre();
+            this.value = "";
+        } else if (value && value !== "" && !selectedGenresList.includes(value)) {
+            selectedGenresList.push(value);
+            updateSelectedItems(elements.selectedGenres, selectedGenresList, "genres");
+            this.value = "";
+            applyFilters();
         }
-    }
-});
+    };
+}
 
-document.getElementById("actors-modal").addEventListener("change", async function (e) {
-    const selectedOption = e.target.options[e.target.selectedIndex];
-    if (selectedOption && selectedOption.value === "add-new") {
-        const firstName = prompt("Введите имя актера:");
-        const lastName = prompt("Введите фамилию актера:");
-        if (firstName && lastName) {
-            const newActor = `${firstName} ${lastName}`;
-            try {
-                const response = await fetch(`${BASE_URL}/api/actors`, {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                        "Authorization": `Bearer ${token}`
-                    },
-                    body: JSON.stringify({ firstName, lastName })
-                });
-                if (response.ok) {
-                    await loadMovies(); // Обновляем все данные
-                    const actorsModalSelect = document.getElementById("actors-modal");
-                    actorsModalSelect.innerHTML = '<option value="">Выберите актера</option>' +
-                        allActors.map(actor => `<option value="${actor}">${actor}</option>`).join('') +
-                        '<option value="add-new" class="add-new-option">Добавить нового актера...</option>';
-                    Array.from(actorsModalSelect.options).forEach(opt => {
-                        if (opt.value === newActor) opt.selected = true;
-                    });
-                } else {
-                    alert("Ошибка при добавлении актера");
-                    resetForm();
-                }
-            } catch (error) {
-                console.error("Ошибка:", error);
-                alert("Ошибка при добавлении актера");
-                resetForm();
-            }
-        } else {
-            resetForm();
+if (elements.directorModal) {
+    elements.directorModal.onchange = function() {
+        const value = this.value;
+        if (value === "add-new") {
+            addDirector();
+            this.value = "";
+        } else if (value && !selectedDirectorsList.includes(value)) {
+            selectedDirectorsList.push(value);
+            updateSelectedItems(elements.selectedDirectors, selectedDirectorsList, "directors");
+            this.value = "";
         }
-    }
-});
+    };
+}
 
-document.getElementById("poster").addEventListener("change", async function (e) {
-    const file = e.target.files[0];
-    if (file) {
-        const formData = new FormData();
-        formData.append("poster", file);
-        try {
-            const response = await fetch(`${BASE_URL}/api/upload-poster`, {
-                method: "POST",
-                headers: { "Authorization": `Bearer ${token}` },
-                body: formData
-            });
-            const data = await response.json();
-            if (response.ok) {
-                selectedPoster = data.poster;
-            } else {
-                alert("Ошибка при загрузке постера");
-            }
-        } catch (error) {
-            console.error("Ошибка при загрузке постера:", error);
-            alert("Ошибка при загрузке постера");
+if (elements.actorsModal) {
+    elements.actorsModal.onchange = function() {
+        const value = this.value;
+        if (value === "add-new") {
+            addActor();
+            this.value = "";
+        } else if (value && !selectedActorsList.includes(value)) {
+            selectedActorsList.push(value);
+            updateSelectedItems(elements.selectedActors, selectedActorsList, "actors");
+            this.value = "";
         }
-    }
-});
-
+    };
+}
 
 function populateMovieTable() {
-    movieTableBody.innerHTML = "";
+    elements.movieTableBody.innerHTML = "";
     if (allMovies.length === 0) {
-        movieTableBody.innerHTML = '<tr><td colspan="8">Фильмы не найдены</td></tr>';
+        elements.movieTableBody.innerHTML = '<tr><td colspan="8">Фильмы не найдены</td></tr>';
         return;
     }
 
@@ -409,60 +485,91 @@ function populateMovieTable() {
         const row = document.createElement("tr");
         row.innerHTML = `
             <td>${movie.title || "Без названия"}</td>
-            <td>${movie.genre || "Нет жанра"}</td>
-            <td>${movie.directors || "Нет режиссеров"}</td>
+            <td>${movie.genres || "Нет жанров"}</td>
+            <td>${movie.directors || "Нет режиссёров"}</td>
             <td>${movie.year || "Нет года"}</td>
-            <td>${movie.actors || "Нет актеров"}</td>
+            <td>${movie.actors || "Нет актёров"}</td>
             <td>${movie.poster ? '<img src="' + movie.poster + '" style="max-width: 50px;">' : "Нет"}</td>
             <td>${movie.description || "Нет описания"}</td>
-            <td>${movie.creator || "Неизвестно"}</td> <!-- Отображаем создателя -->
+            <td>${movie.creator || "Неизвестно"}</td>
         `;
         row.style.cursor = "pointer";
         row.addEventListener("click", () => {
+            // Вызываем только editMovie без перехода на more.html
             editMovie(movie.id);
-            movieModal.style.display = "block"; // Открываем модальное окно
         });
-        movieTableBody.appendChild(row);
+        elements.movieTableBody.appendChild(row);
     });
 }
+
 function editMovie(movieId) {
     const movie = allMovies.find(m => m.id === movieId);
     if (movie) {
         selectedMovieId = movieId;
         uploadedPoster = movie.poster;
+        
+        selectedGenresList = (movie.genres && movie.genres.trim() !== "") 
+            ? movie.genres.split(", ").map(g => g.trim()) 
+            : [];
+        selectedDirectorsList = (movie.directors && movie.directors.trim() !== "") 
+            ? movie.directors.split(", ").map(d => d.trim()) 
+            : [];
+        selectedActorsList = (movie.actors && movie.actors.trim() !== "") 
+            ? movie.actors.split(", ").map(a => a.trim()) 
+            : [];
+        
         document.getElementById("movie-id").value = movie.id;
-        document.getElementById("title").value = movie.title;
-        document.getElementById("genre-modal").value = movie.genre;
-        const directorModalSelect = document.getElementById("director-modal");
-        Array.from(directorModalSelect.options).forEach(opt => {
-            opt.selected = movie.directors.split(", ").includes(opt.value);
-        });
-        document.getElementById("year").value = movie.year;
+        document.getElementById("title").value = movie.title || "";
+        document.getElementById("year").value = movie.year || "";
         document.getElementById("description").value = movie.description || "";
-        const actorsModalSelect = document.getElementById("actors-modal");
-        Array.from(actorsModalSelect.options).forEach(opt => {
-            opt.selected = movie.actors.split(", ").includes(opt.value);
-        });
-        posterStatus.textContent = movie.poster ? "Текущий постер загружен" : "Постер не загружен";
-        posterStatus.style.color = movie.poster ? "green" : "black";
-        saveButton.style.display = "none"; // Скрываем "Сохранить"
-        updateButton.style.display = "inline"; // Показываем "Обновить"
-        deleteButton.style.display = "inline"; // Показываем "Удалить"
+        
+        elements.saveButton.style.display = "none";
+        elements.updateButton.style.display = "inline";
+        elements.deleteButton.style.display = "inline";
+        
+        elements.posterStatus.textContent = movie.poster ? "Текущий постер загружен" : "Постер не загружен";
+        elements.posterStatus.style.color = movie.poster ? "green" : "black";
+        
+        updateSelectedItems(elements.selectedGenres, selectedGenresList, "genres");
+        updateSelectedItems(elements.selectedDirectors, selectedDirectorsList, "directors");
+        updateSelectedItems(elements.selectedActors, selectedActorsList, "actors");
+        applyFilters();
     }
 }
 
-addMovieButton.onclick = showMovieModal;
-addMovieUserButton.onclick = showMovieModal;
+elements.addMovieButton.onclick = showMovieModal;
+elements.addMovieUserButton.onclick = showMovieModal;
+elements.applyFiltersButton.onclick = applyFilters;
 
-movieForm.onsubmit = async function (e) {
+elements.movieForm.onsubmit = async function(e) {
     e.preventDefault();
+
+    // Собираем данные из формы и выбранных элементов
     const title = document.getElementById("title").value;
-    const genre = document.getElementById("genre-modal").value;
-    const directors = Array.from(document.getElementById("director-modal").selectedOptions).map(opt => opt.value);
     const year = document.getElementById("year").value;
-    const description = document.getElementById("description").value;
-    const actors = Array.from(document.getElementById("actors-modal").selectedOptions).map(opt => opt.value);
-    const poster = uploadedPoster; // Используем загруженный постер
+    const description = document.getElementById("description").value || "";
+    const genres = selectedGenresList.length > 0 ? selectedGenresList : [];
+    const directors = selectedDirectorsList.length > 0 ? selectedDirectorsList : [];
+    const actors = selectedActorsList.length > 0 ? selectedActorsList : [];
+    const poster = uploadedPoster || null;
+
+    // Проверяем, что жанры выбраны
+    if (genres.length === 0) {
+        alert("Пожалуйста, выберите хотя бы один жанр.");
+        return;
+    }
+
+    const movieData = {
+        title,
+        genres,
+        directors,
+        year,
+        description,
+        actors,
+        poster
+    };
+
+    console.log("Отправляемые данные:", JSON.stringify(movieData));
 
     try {
         const response = await fetch(`${BASE_URL}/api/movies`, {
@@ -471,20 +578,15 @@ movieForm.onsubmit = async function (e) {
                 "Content-Type": "application/json",
                 "Authorization": `Bearer ${token}`
             },
-            body: JSON.stringify({
-                title,
-                description,
-                poster, // Передаем base64 строку
-                year,
-                genre,
-                directors,
-                actors
-            })
+            body: JSON.stringify(movieData)
         });
 
-        if (!response.ok) throw new Error(await response.text());
-
-        movieModal.style.display = "none";
+        if (!response.ok) {
+            const errorText = await response.text();
+            throw new Error(errorText);
+        }
+        
+        elements.movieModal.style.display = "none";
         loadMovies();
     } catch (error) {
         console.error("Ошибка при добавлении фильма:", error);
@@ -492,16 +594,32 @@ movieForm.onsubmit = async function (e) {
     }
 };
 
-updateButton.onclick = async function () {
+elements.updateButton.onclick = async function() {
     if (!selectedMovieId) return;
 
     const title = document.getElementById("title").value;
-    const genre = document.getElementById("genre-modal").value;
-    const directors = Array.from(document.getElementById("director-modal").selectedOptions).map(opt => opt.value);
     const year = document.getElementById("year").value;
     const description = document.getElementById("description").value;
-    const actors = Array.from(document.getElementById("actors-modal").selectedOptions).map(opt => opt.value);
-    const poster = uploadedPoster || selectedPoster; // Используем новый постер или старый, если новый не загружен
+    const genres = selectedGenresList;
+    const directors = selectedDirectorsList;
+    const actors = selectedActorsList;
+    const poster = uploadedPoster;
+
+    // Проверяем, что жанры выбраны
+    if (genres.length === 0) {
+        alert("Пожалуйста, выберите хотя бы один жанр.");
+        return;
+    }
+
+    const movieData = {
+        title,
+        genres,
+        directors,
+        year,
+        description,
+        actors,
+        poster
+    };
 
     try {
         const response = await fetch(`${BASE_URL}/api/movies/${selectedMovieId}`, {
@@ -510,20 +628,12 @@ updateButton.onclick = async function () {
                 "Content-Type": "application/json",
                 "Authorization": `Bearer ${token}`
             },
-            body: JSON.stringify({
-                title,
-                description,
-                poster, // Передаем base64 строку
-                year,
-                genre,
-                directors,
-                actors
-            })
+            body: JSON.stringify(movieData)
         });
 
         if (!response.ok) throw new Error(await response.text());
-
-        movieModal.style.display = "none";
+        
+        elements.movieModal.style.display = "none";
         loadMovies();
     } catch (error) {
         console.error("Ошибка при обновлении фильма:", error);
@@ -531,10 +641,8 @@ updateButton.onclick = async function () {
     }
 };
 
-deleteButton.onclick = async function () {
-    if (!selectedMovieId) return;
-
-    if (!confirm("Вы уверены, что хотите удалить этот фильм?")) return;
+elements.deleteButton.onclick = async function() {
+    if (!selectedMovieId || !confirm("Вы уверены, что хотите удалить этот фильм?")) return;
 
     try {
         const response = await fetch(`${BASE_URL}/api/movies/${selectedMovieId}`, {
@@ -545,8 +653,8 @@ deleteButton.onclick = async function () {
         });
 
         if (!response.ok) throw new Error(await response.text());
-
-        movieModal.style.display = "none";
+        
+        elements.movieModal.style.display = "none";
         loadMovies();
     } catch (error) {
         console.error("Ошибка при удалении фильма:", error);
@@ -554,49 +662,7 @@ deleteButton.onclick = async function () {
     }
 };
 
-async function deleteDirectorFromMovie(movieId, directorName) {
-    try {
-        const response = await fetch(`${BASE_URL}/api/movies/${movieId}/directors/${encodeURIComponent(directorName)}`, {
-            method: "DELETE",
-            headers: {
-                "Authorization": `Bearer ${token}`
-            }
-        });
-
-        if (response.ok) {
-            await loadMovies();
-            editMovie(movieId);
-        } else {
-            alert("Ошибка при удалении режиссера");
-        }
-    } catch (error) {
-        console.error("Ошибка при удалении режиссера:", error);
-        alert("Ошибка при удалении режиссера");
-    }
-}
-
-async function deleteActorFromMovie(movieId, actorName) {
-    try {
-        const response = await fetch(`${BASE_URL}/api/movies/${movieId}/actors/${encodeURIComponent(actorName)}`, {
-            method: "DELETE",
-            headers: {
-                "Authorization": `Bearer ${token}`
-            }
-        });
-
-        if (response.ok) {
-            await loadMovies();
-            editMovie(movieId);
-        } else {
-            alert("Ошибка при удалении актера");
-        }
-    } catch (error) {
-        console.error("Ошибка при удалении актера:", error);
-        alert("Ошибка при удалении актера");
-    }
-}
-
-window.onload = function () {
+window.onload = function() {
     checkAuth();
     loadMovies();
 };

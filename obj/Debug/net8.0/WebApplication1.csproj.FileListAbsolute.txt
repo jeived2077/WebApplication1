@@ -49,3 +49,4 @@ C:\Users\jeived\Desktop\WebApplication1\WebApplication1\obj\Debug\net8.0\WebAppl
 C:\Users\jeived\Desktop\WebApplication1\WebApplication1\obj\Debug\net8.0\WebApplication1.genruntimeconfig.cache
 C:\Users\jeived\Desktop\WebApplication1\WebApplication1\obj\Debug\net8.0\ref\WebApplication1.dll
 C:\Users\jeived\Desktop\WebApplication1\WebApplication1\bin\Debug\net8.0\WebApplication1.staticwebassets.runtime.json
+C:\Users\jeived\Desktop\WebApplication1\WebApplication1\obj\Debug\net8.0\WebApplication1.sourcelink.json

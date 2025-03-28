@@ -1,4 +1,4 @@
-using Microsoft.AspNetCore.Builder;
+п»їusing Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
 using System.Security.Claims;
 using System.Text.Json;
@@ -42,7 +42,7 @@ app.UseDefaultFiles(new DefaultFilesOptions
     DefaultFileNames = new List<string> { "homepage.html" } 
 });
 
-//маршрут регистрации
+//РјР°СЂС€СЂСѓС‚ СЂРµРіРёСЃС‚СЂР°С†РёРё
 app.MapPost("/api/auth/register", async (HttpRequest request, Database db) =>
 {
     try
@@ -58,11 +58,11 @@ app.MapPost("/api/auth/register", async (HttpRequest request, Database db) =>
     }
     catch (Exception ex)
     {
-        return Results.Text($"Ошибка обработки запроса: {ex.Message}", statusCode: 400);
+        return Results.Text($"РћС€РёР±РєР° РѕР±СЂР°Р±РѕС‚РєРё Р·Р°РїСЂРѕСЃР°: {ex.Message}", statusCode: 400);
     }
 });
 
-//маршрут авторизации
+//РјР°СЂС€СЂСѓС‚ Р°РІС‚РѕСЂРёР·Р°С†РёРё
 app.MapPost("/api/auth/login", async (HttpRequest request, Database db) =>
 {
     try
@@ -78,11 +78,11 @@ app.MapPost("/api/auth/login", async (HttpRequest request, Database db) =>
     }
     catch (Exception ex)
     {
-        return Results.Text($"Ошибка обработки запроса: {ex.Message}", statusCode: 400);
+        return Results.Text($"РћС€РёР±РєР° РѕР±СЂР°Р±РѕС‚РєРё Р·Р°РїСЂРѕСЃР°: {ex.Message}", statusCode: 400);
     }
 });
 
-//маршрут вывода пользователей
+//РјР°СЂС€СЂСѓС‚ РІС‹РІРѕРґР° РїРѕР»СЊР·РѕРІР°С‚РµР»РµР№
 app.MapGet("/api/users", (Database db) =>
 {
     var users = db.User.Select(u => new { u.Login, u.Status }).ToList();
@@ -103,14 +103,18 @@ app.MapPost("/api/genres", async (HttpRequest request, Database db) =>
     {
         var body = await new StreamReader(request.Body).ReadToEndAsync();
         var data = JsonSerializer.Deserialize<Dictionary<string, string>>(body);
-        Console.WriteLine($"Добавление жанра: {data["name"]}");
-        db.GenreAdd(data["name"]);
-        return Results.Ok();
+        string name = data["name"];
+        Console.WriteLine($"Р”РѕР±Р°РІР»РµРЅРёРµ Р¶Р°РЅСЂР°: {name}");
+
+        var (success, message) = db.GenreAdd(name);
+        if (success)
+            return Results.Json(new { Success = true, Message = message });
+        return Results.Json(new { Success = false, Message = message }, statusCode: 400);
     }
     catch (Exception ex)
     {
-        Console.WriteLine($"Ошибка при добавлении жанра: {ex.Message}");
-        return Results.Text($"Ошибка при добавлении жанра: {ex.Message}", statusCode: 500);
+        Console.WriteLine($"РћС€РёР±РєР° РїСЂРё РґРѕР±Р°РІР»РµРЅРёРё Р¶Р°РЅСЂР°: {ex.Message}");
+        return Results.Json(new { Success = false, Message = $"РћС€РёР±РєР° РїСЂРё РґРѕР±Р°РІР»РµРЅРёРё Р¶Р°РЅСЂР°: {ex.Message}" }, statusCode: 500);
     }
 });
 app.MapPost("/api/actors", async (HttpRequest request, Database db) =>
@@ -119,42 +123,51 @@ app.MapPost("/api/actors", async (HttpRequest request, Database db) =>
     {
         var body = await new StreamReader(request.Body).ReadToEndAsync();
         var data = JsonSerializer.Deserialize<Dictionary<string, string>>(body);
-        Console.WriteLine($"Добавление актера: {data["firstName"]} {data["lastName"]}");
-        db.ActorAdd(data["firstName"], data["lastName"]);
-        return Results.Ok();
+        string firstName = data["firstName"];
+        string lastName = data["lastName"];
+        Console.WriteLine($"Р”РѕР±Р°РІР»РµРЅРёРµ Р°РєС‚С‘СЂР°: {firstName} {lastName}");
+
+        var (success, message) = db.ActorAdd(firstName, lastName);
+        if (success)
+            return Results.Json(new { Success = true, Message = message });
+        return Results.Json(new { Success = false, Message = message }, statusCode: 400);
     }
     catch (Exception ex)
     {
-        Console.WriteLine($"Ошибка при добавлении актера: {ex.Message}");
-        return Results.Text($"Ошибка при добавлении актера: {ex.Message}", statusCode: 500);
+        Console.WriteLine($"РћС€РёР±РєР° РїСЂРё РґРѕР±Р°РІР»РµРЅРёРё Р°РєС‚С‘СЂР°: {ex.Message}");
+        return Results.Json(new { Success = false, Message = $"РћС€РёР±РєР° РїСЂРё РґРѕР±Р°РІР»РµРЅРёРё Р°РєС‚С‘СЂР°: {ex.Message}" }, statusCode: 500);
     }
 });
-// Маршруты для режиссеров
 app.MapPost("/api/directors", async (HttpRequest request, Database db) =>
 {
     try
     {
         var body = await new StreamReader(request.Body).ReadToEndAsync();
         var data = JsonSerializer.Deserialize<Dictionary<string, string>>(body);
-        Console.WriteLine($"Добавление режиссера: {data["firstName"]} {data["lastName"]}");
-        db.DirectorAdd(data["firstName"], data["lastName"]);
-        return Results.Ok();
+        string firstName = data["firstName"];
+        string lastName = data["lastName"];
+        Console.WriteLine($"Р”РѕР±Р°РІР»РµРЅРёРµ СЂРµР¶РёСЃСЃС‘СЂР°: {firstName} {lastName}");
+
+        var (success, message) = db.DirectorAdd(firstName, lastName);
+        if (success)
+            return Results.Json(new { Success = true, Message = message });
+        return Results.Json(new { Success = false, Message = message }, statusCode: 400);
     }
     catch (Exception ex)
     {
-        Console.WriteLine($"Ошибка при добавлении режиссера: {ex.Message}");
-        return Results.Text($"Ошибка при добавлении режиссера: {ex.Message}", statusCode: 500);
+        Console.WriteLine($"РћС€РёР±РєР° РїСЂРё РґРѕР±Р°РІР»РµРЅРёРё СЂРµР¶РёСЃСЃС‘СЂР°: {ex.Message}");
+        return Results.Json(new { Success = false, Message = $"РћС€РёР±РєР° РїСЂРё РґРѕР±Р°РІР»РµРЅРёРё СЂРµР¶РёСЃСЃС‘СЂР°: {ex.Message}" }, statusCode: 500);
     }
 });
 
-//маршрут вывода фильмов
+//РјР°СЂС€СЂСѓС‚ РІС‹РІРѕРґР° С„РёР»СЊРјРѕРІ
 app.MapGet("/api/movies", (Database db) =>
 {
     try
     {
         var genres = db.ListGenre();
         var directors = db.DirectorList();
-        var actors = db.ActorList(); // Добавляем актеров
+        var actors = db.ActorList(); // Р”РѕР±Р°РІР»СЏРµРј Р°РєС‚РµСЂРѕРІ
         var movies = db.ListingFilms();
 
         var result = new
@@ -169,7 +182,7 @@ app.MapGet("/api/movies", (Database db) =>
     }
     catch (Exception ex)
     {
-        return Results.Text($"Ошибка при получении фильмов: {ex.Message}", statusCode: 500);
+        return Results.Text($"РћС€РёР±РєР° РїСЂРё РїРѕР»СѓС‡РµРЅРёРё С„РёР»СЊРјРѕРІ: {ex.Message}", statusCode: 500);
     }
 });
 app.MapPost("/api/movies", async (HttpRequest request, Database db) =>
@@ -178,7 +191,7 @@ app.MapPost("/api/movies", async (HttpRequest request, Database db) =>
     {
         var token = request.Headers["Authorization"].ToString().Replace("Bearer ", "");
         var (isValid, claims, errorMessage) = db.DecodeJwtToken(token);
-        if (!isValid) return Results.Text($"Ошибка авторизации: {errorMessage}", statusCode: 401);
+        if (!isValid) return Results.Text($"РћС€РёР±РєР° Р°РІС‚РѕСЂРёР·Р°С†РёРё: {errorMessage}", statusCode: 401);
 
         var body = await new StreamReader(request.Body).ReadToEndAsync();
         var data = JsonSerializer.Deserialize<Dictionary<string, object>>(body);
@@ -186,28 +199,40 @@ app.MapPost("/api/movies", async (HttpRequest request, Database db) =>
         string description = data["description"]?.ToString();
         string poster = data["poster"]?.ToString();
         string year = data["year"].ToString();
-        string genre = data["genre"].ToString();
+        var genres = JsonSerializer.Deserialize<List<string>>(data["genres"].ToString()); // РСЃРїСЂР°РІР»РµРЅРѕ СЃ "genre" РЅР° "genres"
         var directors = JsonSerializer.Deserialize<List<string>>(data["directors"].ToString());
         var actors = JsonSerializer.Deserialize<List<string>>(data["actors"].ToString());
         int userId = int.Parse(claims[ClaimTypes.NameIdentifier]);
 
-        db.FilmsAdd(title, description, poster, year, genre, directors, actors, userId);
+        db.FilmsAdd(title, description, poster, year, genres, directors, actors, userId);
         return Results.Ok();
     }
     catch (Exception ex)
     {
-        return Results.Text($"Ошибка при добавлении фильма: {ex.Message}", statusCode: 500);
+        return Results.Text($"РћС€РёР±РєР° РїСЂРё РґРѕР±Р°РІР»РµРЅРёРё С„РёР»СЊРјР°: {ex.Message}", statusCode: 500);
+    }
+});
+// РџРѕР»СѓС‡РµРЅРёРµ РґРµС‚Р°Р»РµР№ С„РёР»СЊРјР° РїРѕ ID
+app.MapGet("/api/movies/{id}", (int id, Database db) =>
+{
+    try
+    {
+        var movieDetails = db.GetMovieDetails(id);
+        return Results.Ok(movieDetails);
+    }
+    catch (Exception ex)
+    {
+        return Results.Text($"РћС€РёР±РєР° РїСЂРё РїРѕР»СѓС‡РµРЅРёРё РґРµС‚Р°Р»РµР№ С„РёР»СЊРјР°: {ex.Message}", statusCode: 500);
     }
 });
 
-// Обновление фильма
 app.MapPut("/api/movies/{id}", async (int id, HttpRequest request, Database db) =>
 {
     try
     {
         var token = request.Headers["Authorization"].ToString().Replace("Bearer ", "");
         var (isValid, _, errorMessage) = db.DecodeJwtToken(token);
-        if (!isValid) return Results.Text($"Ошибка авторизации: {errorMessage}", statusCode: 401);
+        if (!isValid) return Results.Text($"РћС€РёР±РєР° Р°РІС‚РѕСЂРёР·Р°С†РёРё: {errorMessage}", statusCode: 401);
 
         var body = await new StreamReader(request.Body).ReadToEndAsync();
         var data = JsonSerializer.Deserialize<Dictionary<string, object>>(body);
@@ -215,34 +240,34 @@ app.MapPut("/api/movies/{id}", async (int id, HttpRequest request, Database db) 
         string description = data["description"]?.ToString();
         string poster = data["poster"]?.ToString();
         string year = data["year"].ToString();
-        string genre = data["genre"].ToString();
+        var genres = JsonSerializer.Deserialize<List<string>>(data["genres"].ToString()); // РСЃРїСЂР°РІР»РµРЅРѕ СЃ "genre" РЅР° "genres"
         var directors = JsonSerializer.Deserialize<List<string>>(data["directors"].ToString());
         var actors = JsonSerializer.Deserialize<List<string>>(data["actors"].ToString());
 
-        db.EditingFilms(id, title, description, poster, year, genre, directors, actors);
+        db.EditingFilms(id, title, description, poster, year, genres, directors, actors);
         return Results.Ok();
     }
     catch (Exception ex)
     {
-        return Results.Text($"Ошибка при обновлении фильма: {ex.Message}", statusCode: 500);
+        return Results.Text($"РћС€РёР±РєР° РїСЂРё РѕР±РЅРѕРІР»РµРЅРёРё С„РёР»СЊРјР°: {ex.Message}", statusCode: 500);
     }
 });
 
-// Удаление фильма
+// РЈРґР°Р»РµРЅРёРµ С„РёР»СЊРјР°
 app.MapDelete("/api/movies/{id}", async (int id, HttpRequest request, Database db) =>
 {
     try
     {
         var token = request.Headers["Authorization"].ToString().Replace("Bearer ", "");
         var (isValid, _, errorMessage) = db.DecodeJwtToken(token);
-        if (!isValid) return Results.Text($"Ошибка авторизации: {errorMessage}", statusCode: 401);
+        if (!isValid) return Results.Text($"РћС€РёР±РєР° Р°РІС‚РѕСЂРёР·Р°С†РёРё: {errorMessage}", statusCode: 401);
 
         db.DeleteFilms(id);
         return Results.Ok();
     }
     catch (Exception ex)
     {
-        return Results.Text($"Ошибка при удалении фильма: {ex.Message}", statusCode: 500);
+        return Results.Text($"РћС€РёР±РєР° РїСЂРё СѓРґР°Р»РµРЅРёРё С„РёР»СЊРјР°: {ex.Message}", statusCode: 500);
     }
 });
 app.MapGet("/api/actors", (Database db) =>
@@ -254,7 +279,7 @@ app.MapGet("/api/actors", (Database db) =>
     }
     catch (Exception ex)
     {
-        return Results.Text($"Ошибка при получении актеров: {ex.Message}", statusCode: 500);
+        return Results.Text($"РћС€РёР±РєР° РїСЂРё РїРѕР»СѓС‡РµРЅРёРё Р°РєС‚РµСЂРѕРІ: {ex.Message}", statusCode: 500);
     }
 });
 app.MapDelete("/api/movies/{movieId}/directors/{directorName}", async (int movieId, string directorName, HttpRequest request, Database db) =>
@@ -263,13 +288,13 @@ app.MapDelete("/api/movies/{movieId}/directors/{directorName}", async (int movie
     {
         var token = request.Headers["Authorization"].ToString().Replace("Bearer ", "");
         var (isValid, _, errorMessage) = db.DecodeJwtToken(token);
-        if (!isValid) return Results.Text($"Ошибка авторизации: {errorMessage}", statusCode: 401);
+        if (!isValid) return Results.Text($"РћС€РёР±РєР° Р°РІС‚РѕСЂРёР·Р°С†РёРё: {errorMessage}", statusCode: 401);
 
         var director = db.Directors.FirstOrDefault(d => d.Name == directorName);
-        if (director == null) return Results.NotFound("Режиссер не найден");
+        if (director == null) return Results.NotFound("Р РµР¶РёСЃСЃРµСЂ РЅРµ РЅР°Р№РґРµРЅ");
 
         var filmToDirector = db.FilmToDirectors.FirstOrDefault(ftd => ftd.Idfilms == movieId && ftd.Iddirector == director.Iddirector);
-        if (filmToDirector == null) return Results.NotFound("Привязка режиссера к фильму не найдена");
+        if (filmToDirector == null) return Results.NotFound("РџСЂРёРІСЏР·РєР° СЂРµР¶РёСЃСЃРµСЂР° Рє С„РёР»СЊРјСѓ РЅРµ РЅР°Р№РґРµРЅР°");
 
         db.FilmToDirectors.Remove(filmToDirector);
         await db.SaveChangesAsync();
@@ -277,40 +302,24 @@ app.MapDelete("/api/movies/{movieId}/directors/{directorName}", async (int movie
     }
     catch (Exception ex)
     {
-        return Results.Text($"Ошибка при удалении режиссера из фильма: {ex.Message}", statusCode: 500);
+        return Results.Text($"РћС€РёР±РєР° РїСЂРё СѓРґР°Р»РµРЅРёРё СЂРµР¶РёСЃСЃРµСЂР° РёР· С„РёР»СЊРјР°: {ex.Message}", statusCode: 500);
     }
 });
-app.MapPost("/api/upload-poster", async (HttpRequest request, Database db) =>
-{
-    try
-    {
-        var file = request.Form.Files["poster"];
-        if (file == null || file.Length == 0) return Results.BadRequest("Файл не выбран");
 
-        using var memoryStream = new MemoryStream();
-        await file.CopyToAsync(memoryStream);
-        var base64String = Convert.ToBase64String(memoryStream.ToArray());
-        return Results.Ok(new { poster = $"data:image/{Path.GetExtension(file.FileName).Substring(1)};base64,{base64String}" });
-    }
-    catch (Exception ex)
-    {
-        return Results.Text($"Ошибка при загрузке файла: {ex.Message}", statusCode: 500);
-    }
-});
-// Удаление актера из фильма
+// РЈРґР°Р»РµРЅРёРµ Р°РєС‚РµСЂР° РёР· С„РёР»СЊРјР°
 app.MapDelete("/api/movies/{movieId}/actors/{actorName}", async (int movieId, string actorName, HttpRequest request, Database db) =>
 {
     try
     {
         var token = request.Headers["Authorization"].ToString().Replace("Bearer ", "");
         var (isValid, _, errorMessage) = db.DecodeJwtToken(token);
-        if (!isValid) return Results.Text($"Ошибка авторизации: {errorMessage}", statusCode: 401);
+        if (!isValid) return Results.Text($"РћС€РёР±РєР° Р°РІС‚РѕСЂРёР·Р°С†РёРё: {errorMessage}", statusCode: 401);
 
         var actor = db.Actors.FirstOrDefault(a => a.Name == actorName);
-        if (actor == null) return Results.NotFound("Актер не найден");
+        if (actor == null) return Results.NotFound("РђРєС‚РµСЂ РЅРµ РЅР°Р№РґРµРЅ");
 
         var filmToActor = db.FilmToActors.FirstOrDefault(fta => fta.Idfilms == movieId && fta.Idactor == actor.Idactor);
-        if (filmToActor == null) return Results.NotFound("Привязка актера к фильму не найдена");
+        if (filmToActor == null) return Results.NotFound("РџСЂРёРІСЏР·РєР° Р°РєС‚РµСЂР° Рє С„РёР»СЊРјСѓ РЅРµ РЅР°Р№РґРµРЅР°");
 
         db.FilmToActors.Remove(filmToActor);
         await db.SaveChangesAsync();
@@ -318,7 +327,7 @@ app.MapDelete("/api/movies/{movieId}/actors/{actorName}", async (int movieId, st
     }
     catch (Exception ex)
     {
-        return Results.Text($"Ошибка при удалении актера из фильма: {ex.Message}", statusCode: 500);
+        return Results.Text($"РћС€РёР±РєР° РїСЂРё СѓРґР°Р»РµРЅРёРё Р°РєС‚РµСЂР° РёР· С„РёР»СЊРјР°: {ex.Message}", statusCode: 500);
     }
 });
 
