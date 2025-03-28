@@ -548,55 +548,65 @@
                     throw;
                 }
             }
-            public object GetMovieDetails(int id)
+        public object GetMovieDetails(int id)
+        {
+            try
             {
-                try
+                if (!TestConnection()) throw new Exception("Не удалось подключиться к базе данных");
+
+                var movie = Movies.FirstOrDefault(m => m.Idfims == id);
+                if (movie == null) throw new Exception("Фильм не найден");
+
+                // Add view record to ViewFilms
+                var newView = new ViewFilms
                 {
-                    if (!TestConnection()) throw new Exception("Не удалось подключиться к базе данных");
+                    Id = ViewFilms.Any() ? ViewFilms.Max(v => v.Id) + 1 : 1,
+                    Films = id
+                };
+                ViewFilms.Add(newView);
+                SaveChanges();
 
-                    var movie = Movies.FirstOrDefault(m => m.Idfims == id);
-                    if (movie == null) throw new Exception("Фильм не найден");
+                var genres = (from ftg in FilmToGenres
+                              join g in Genres on ftg.Idgenre equals g.Idgenre
+                              where ftg.Idfilms == id
+                              select g.Name).ToList();
 
-                    var genres = (from ftg in FilmToGenres
-                                  join g in Genres on ftg.Idgenre equals g.Idgenre
-                                  where ftg.Idfilms == id
-                                  select g.Name).ToList();
+                var directors = (from ftd in FilmToDirectors
+                                 join d in Directors on ftd.Iddirector equals d.Iddirector
+                                 where ftd.Idfilms == id
+                                 select d.Name).Distinct().ToList();
 
-                    var directors = (from ftd in FilmToDirectors
-                                     join d in Directors on ftd.Iddirector equals d.Iddirector
-                                     where ftd.Idfilms == id
-                                     select d.Name).Distinct().ToList();
+                var actors = (from fta in FilmToActors
+                              join a in Actors on fta.Idactor equals a.Idactor
+                              where fta.Idfilms == id
+                              select a.Name).Distinct().ToList();
 
-                    var actors = (from fta in FilmToActors
-                                  join a in Actors on fta.Idactor equals a.Idactor
-                                  where fta.Idfilms == id
-                                  select a.Name).Distinct().ToList();
+                var viewCount = ViewFilms.Count(vf => vf.Films == id);
 
-                    var viewCount = ViewFilms.Count(vf => vf.Films == id);
-                    var creator = User.FirstOrDefault(u => u.IdUser == movie.Users)?.Login ?? "Неизвестно";
+                var creator = User.FirstOrDefault(u => u.IdUser == movie.Users)?.Login ?? "Неизвестно";
 
-                    return new
-                    {
-                        id = movie.Idfims,
-                        title = movie.Namefilms,
-                        description = movie.Information,
-                        poster = movie.Image,
-                        year = movie.Years,
-                        genres = genres.Any() ? string.Join(", ", genres) : "Нет жанров",
-                        directors = directors.Any() ? string.Join(", ", directors) : "Нет режиссёров",
-                        actors = actors.Any() ? string.Join(", ", actors) : "Нет актёров",
-                        viewCount = viewCount,
-                        creator = creator
-                    };
-                }
-                catch (Exception ex)
+                return new
                 {
-                    Console.WriteLine($"Ошибка при получении деталей фильма: {ex.Message}");
-                    throw;
-                }
+                    id = movie.Idfims,
+                    title = movie.Namefilms,
+                    description = movie.Information,
+                    poster = movie.Image,
+                    year = movie.Years,
+                    genres = genres.Any() ? string.Join(", ", genres) : "Нет жанров",
+                    directors = directors.Any() ? string.Join(", ", directors) : "Нет режиссёров",
+                    actors = actors.Any() ? string.Join(", ", actors) : "Нет актёров",
+                    viewCount = viewCount,
+                    creator = creator
+                };
             }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Ошибка при получении деталей фильма: {ex.Message}");
+                throw;
+            }
+        }
 
-            public void DeleteFilms(int id)
+        public void DeleteFilms(int id)
             {
                 try
                 {

@@ -158,6 +158,8 @@ function checkAuth() {
             
             if (!login) throw new Error("Логин не найден в токене");
 
+            console.log("Роль пользователя:", role); // Добавляем вывод роли в консоль
+
             elements.userLoginSpan.textContent = login;
             elements.userInfo.style.display = "inline";
             elements.authButton.textContent = "Выйти";
@@ -182,6 +184,7 @@ function checkAuth() {
         elements.authButton.onclick = showAuthModal;
         elements.adminActions.style.display = "none";
         elements.userActions.style.display = "none";
+        console.log("Роль пользователя: не авторизован"); // Выводим сообщение, если токена нет
     }
 }
 
@@ -476,12 +479,49 @@ if (elements.actorsModal) {
 
 function populateMovieTable() {
     elements.movieTableBody.innerHTML = "";
+    
     if (allMovies.length === 0) {
         elements.movieTableBody.innerHTML = '<tr><td colspan="8">Фильмы не найдены</td></tr>';
         return;
     }
 
-    allMovies.forEach(movie => {
+    let role = null;
+    let userId = localStorage.getItem("userId");
+    let userLogin = null;
+
+    if (token) {
+        try {
+            const payload = JSON.parse(atob(token.split('.')[1]));
+            role = payload["http://schemas.microsoft.com/ws/2008/06/identity/claims/role"] || payload["role"];
+            userLogin = payload["http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name"] || payload["name"];
+        } catch (e) {
+            console.error("Ошибка декодирования токена:", e);
+        }
+    }
+
+    console.log("Роль:", role, "User ID:", userId, "Логин:", userLogin); // Диагностика
+
+    let moviesToShow = [];
+    if (role === "admin") {
+        moviesToShow = allMovies; // Админ видит все фильмы
+    } else if (role === "user" && userLogin) {
+        moviesToShow = allMovies.filter(movie => {
+            // Предполагаем, что movie.creator содержит логин создателя
+            const isCreatorMatch = movie.creator === userLogin;
+            console.log(`Фильм: ${movie.title}, Creator: ${movie.creator}, Совпадение: ${isCreatorMatch}`);
+            return isCreatorMatch;
+        });
+    } else {
+        elements.movieTableBody.innerHTML = '<tr><td colspan="8">Авторизуйтесь для просмотра</td></tr>';
+        return;
+    }
+
+    if (moviesToShow.length === 0) {
+        elements.movieTableBody.innerHTML = '<tr><td colspan="8">Фильмы не найдены</td></tr>';
+        return;
+    }
+
+    moviesToShow.forEach(movie => {
         const row = document.createElement("tr");
         row.innerHTML = `
             <td>${movie.title || "Без названия"}</td>
@@ -495,7 +535,6 @@ function populateMovieTable() {
         `;
         row.style.cursor = "pointer";
         row.addEventListener("click", () => {
-            // Вызываем только editMovie без перехода на more.html
             editMovie(movie.id);
         });
         elements.movieTableBody.appendChild(row);
