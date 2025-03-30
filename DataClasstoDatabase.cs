@@ -4,7 +4,7 @@ using System.Text;
 
 namespace WebApplication1
 {
-    public class User
+    public class Users
     {
         [Key]
         public int IdUser { get; set; }

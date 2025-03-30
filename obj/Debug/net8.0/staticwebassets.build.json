@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "Zuxe/N3hd6N0gOHkNriAhxDn75RwQzj+97De8Rtp3PE=",
+  "Hash": "WJ4i38Hl/HCLHoVkgbUo+3DDCpKGYmMkH+LHAr2//m0=",
   "Source": "WebApplication1",
   "BasePath": "_content/WebApplication1",
   "Mode": "Default",
@@ -17,12 +17,12 @@
   ],
   "Assets": [
     {
-      "Identity": "C:\\Users\\jeived\\Desktop\\WebApplication1\\WebApplication1\\wwwroot\\autorization.html",
+      "Identity": "C:\\Users\\jeived\\Desktop\\WebApplication1\\WebApplication1\\wwwroot\\actor.png",
       "SourceId": "WebApplication1",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\jeived\\Desktop\\WebApplication1\\WebApplication1\\wwwroot\\",
       "BasePath": "_content/WebApplication1",
-      "RelativePath": "autorization#[.{fingerprint}]?.html",
+      "RelativePath": "actor#[.{fingerprint}]?.png",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -31,11 +31,32 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "adgmujyu6n",
-      "Integrity": "XqbYyGrZ5/AZJlMC5rec3EULjOBhiK3C+hrcBR8SJaE=",
+      "Fingerprint": "84pvb11fe7",
+      "Integrity": "GBAWEuo1AlehKtziHAqbyGXJ1inbuarHQ7owCWQsRRk=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\autorization.html"
+      "OriginalItemSpec": "wwwroot\\actor.png"
+    },
+    {
+      "Identity": "C:\\Users\\jeived\\Desktop\\WebApplication1\\WebApplication1\\wwwroot\\calendar.png",
+      "SourceId": "WebApplication1",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\jeived\\Desktop\\WebApplication1\\WebApplication1\\wwwroot\\",
+      "BasePath": "_content/WebApplication1",
+      "RelativePath": "calendar#[.{fingerprint}]?.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "qsmnt8gb6h",
+      "Integrity": "KvCk2pNaEC4RhikC8rbYtZlIcxGyk224xNSfi4Vyqhg=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\calendar.png"
     },
     {
       "Identity": "C:\\Users\\jeived\\Desktop\\WebApplication1\\WebApplication1\\wwwroot\\databasestructure.txt",
@@ -59,12 +80,12 @@
       "OriginalItemSpec": "wwwroot\\databasestructure.txt"
     },
     {
-      "Identity": "C:\\Users\\jeived\\Desktop\\WebApplication1\\WebApplication1\\wwwroot\\filmsdetail.html",
+      "Identity": "C:\\Users\\jeived\\Desktop\\WebApplication1\\WebApplication1\\wwwroot\\director.png",
       "SourceId": "WebApplication1",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\jeived\\Desktop\\WebApplication1\\WebApplication1\\wwwroot\\",
       "BasePath": "_content/WebApplication1",
-      "RelativePath": "filmsdetail#[.{fingerprint}]?.html",
+      "RelativePath": "director#[.{fingerprint}]?.png",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -73,11 +94,11 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "pul8u08u23",
-      "Integrity": "XwGXAAxCopWHzkst/axp3fKbNXCXZVBAvuUVhd0+h1w=",
+      "Fingerprint": "lw112lkt7i",
+      "Integrity": "GwrzaWXkevCh68d/SSy3fIVoq/09UkYxFkRACOrCwoc=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\filmsdetail.html"
+      "OriginalItemSpec": "wwwroot\\director.png"
     },
     {
       "Identity": "C:\\Users\\jeived\\Desktop\\WebApplication1\\WebApplication1\\wwwroot\\homepage.html",
@@ -94,8 +115,8 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "5q0xmqtt6q",
-      "Integrity": "7Q/wy2UPneRsbP1LeyXDBliHCw2upNFTUXgqvoYOokw=",
+      "Fingerprint": "9hsjearv1f",
+      "Integrity": "7bx8JNlmPY1PcNCspUYLpnsEzNc/a9X7TkT8WqNhxko=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\homepage.html"
@@ -115,8 +136,8 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "4w8rq38k3b",
-      "Integrity": "xCuCIDs9m+YBdrJk5qgCF8oHfL8sdpDYvaYeadpwV9U=",
+      "Fingerprint": "dmrrunxfln",
+      "Integrity": "a9GOMAuj822Q+URVcRF8ntM6KVwWxfnCj82fSxSBE/k=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\more.html"
@@ -136,8 +157,8 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "oqv73o79ev",
-      "Integrity": "cI9Vj4sLRhpIc0ErZrGJxDxWQ9hnYYITTi4cb92y9A8=",
+      "Fingerprint": "psb7azvo1c",
+      "Integrity": "hyKsjXqswD3/iF0PJ30m6NyzQruFAfaMkxyBaaZnTDQ=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\movie-detail.css"
@@ -157,19 +178,19 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "enx7nb3t2k",
-      "Integrity": "GpmkiTjofG9YMDgno5bct3K4In1eNIAPhzVmkBto7nE=",
+      "Fingerprint": "n6jilnotv9",
+      "Integrity": "n+IFOjZfoWZj/1q8Btsa+lkjvhXwB8jzCWyjNkjB6xM=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\movie-detail.js"
     },
     {
-      "Identity": "C:\\Users\\jeived\\Desktop\\WebApplication1\\WebApplication1\\wwwroot\\PageAdmin.html",
+      "Identity": "C:\\Users\\jeived\\Desktop\\WebApplication1\\WebApplication1\\wwwroot\\staticactor.html",
       "SourceId": "WebApplication1",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\jeived\\Desktop\\WebApplication1\\WebApplication1\\wwwroot\\",
       "BasePath": "_content/WebApplication1",
-      "RelativePath": "PageAdmin#[.{fingerprint}]?.html",
+      "RelativePath": "staticactor#[.{fingerprint}]?.html",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -178,19 +199,19 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "fxvwl1oh59",
-      "Integrity": "owIRVIm9b6on0XasEUTHnshh56O+mCRgtTfwlYMH+0Y=",
+      "Fingerprint": "8n0hrraian",
+      "Integrity": "fHvzvsN7vqm4rXqF1XQxMQuRmWYMda9jOq3cHc8UWpM=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\PageAdmin.html"
+      "OriginalItemSpec": "wwwroot\\staticactor.html"
     },
     {
-      "Identity": "C:\\Users\\jeived\\Desktop\\WebApplication1\\WebApplication1\\wwwroot\\Registration.html",
+      "Identity": "C:\\Users\\jeived\\Desktop\\WebApplication1\\WebApplication1\\wwwroot\\staticdirector.html",
       "SourceId": "WebApplication1",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\jeived\\Desktop\\WebApplication1\\WebApplication1\\wwwroot\\",
       "BasePath": "_content/WebApplication1",
-      "RelativePath": "Registration#[.{fingerprint}]?.html",
+      "RelativePath": "staticdirector#[.{fingerprint}]?.html",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -199,19 +220,19 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "7aangpnmda",
-      "Integrity": "z5ddoN/PNRF+9w6Njdp5rVQyp2oPaLjDiRHSIQp8GxQ=",
+      "Fingerprint": "t3k938svho",
+      "Integrity": "967WLLC/PUS0lZ+UJKUWY5uTXjUajI6Rej1gFfsaTNI=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\Registration.html"
+      "OriginalItemSpec": "wwwroot\\staticdirector.html"
     },
     {
-      "Identity": "C:\\Users\\jeived\\Desktop\\WebApplication1\\WebApplication1\\wwwroot\\script.js",
+      "Identity": "C:\\Users\\jeived\\Desktop\\WebApplication1\\WebApplication1\\wwwroot\\staticgenres.html",
       "SourceId": "WebApplication1",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\jeived\\Desktop\\WebApplication1\\WebApplication1\\wwwroot\\",
       "BasePath": "_content/WebApplication1",
-      "RelativePath": "script#[.{fingerprint}]?.js",
+      "RelativePath": "staticgenres#[.{fingerprint}]?.html",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -220,19 +241,19 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "bftwy87mm4",
-      "Integrity": "9868gmj0hJkyHQQc+5LhZaHu2Ba+62JliEeDaCPA3+o=",
+      "Fingerprint": "nxl8xcrsis",
+      "Integrity": "9b0kzOszXQH0zPTuyWkuBR+LcuHDQqohHTu0kmCJuuY=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\script.js"
+      "OriginalItemSpec": "wwwroot\\staticgenres.html"
     },
     {
-      "Identity": "C:\\Users\\jeived\\Desktop\\WebApplication1\\WebApplication1\\wwwroot\\staticfilms.html",
+      "Identity": "C:\\Users\\jeived\\Desktop\\WebApplication1\\WebApplication1\\wwwroot\\staticyears.html",
       "SourceId": "WebApplication1",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\jeived\\Desktop\\WebApplication1\\WebApplication1\\wwwroot\\",
       "BasePath": "_content/WebApplication1",
-      "RelativePath": "staticfilms#[.{fingerprint}]?.html",
+      "RelativePath": "staticyears#[.{fingerprint}]?.html",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -241,74 +262,11 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "p6hm50f9e8",
-      "Integrity": "gVWA1oXFnoAvcuBYc7/OJ+EbJQsEy4RjyQMZcxMKfO4=",
+      "Fingerprint": "9mzbrjvqnj",
+      "Integrity": "79+wWPYfjaD+Tavgu1bJ7w3RDcy01vxkAkky3Sz5JPs=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\staticfilms.html"
-    },
-    {
-      "Identity": "C:\\Users\\jeived\\Desktop\\WebApplication1\\WebApplication1\\wwwroot\\statistics.css",
-      "SourceId": "WebApplication1",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\jeived\\Desktop\\WebApplication1\\WebApplication1\\wwwroot\\",
-      "BasePath": "_content/WebApplication1",
-      "RelativePath": "statistics#[.{fingerprint}]?.css",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "AssetMergeBehavior": "",
-      "AssetMergeSource": "",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "Fingerprint": "6g8gz7p6m6",
-      "Integrity": "xh3DeDEgvkk4EmxrBv7RnWYt4LADF6pWg4BcyfHAIdc=",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\statistics.css"
-    },
-    {
-      "Identity": "C:\\Users\\jeived\\Desktop\\WebApplication1\\WebApplication1\\wwwroot\\statistics.html",
-      "SourceId": "WebApplication1",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\jeived\\Desktop\\WebApplication1\\WebApplication1\\wwwroot\\",
-      "BasePath": "_content/WebApplication1",
-      "RelativePath": "statistics#[.{fingerprint}]?.html",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "AssetMergeBehavior": "",
-      "AssetMergeSource": "",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "Fingerprint": "kkpvtj29f8",
-      "Integrity": "NFylu6b374ZzTymvH5ieY34fDAODCNeZzQf1Mc0MfQA=",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\statistics.html"
-    },
-    {
-      "Identity": "C:\\Users\\jeived\\Desktop\\WebApplication1\\WebApplication1\\wwwroot\\statistics.js",
-      "SourceId": "WebApplication1",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\jeived\\Desktop\\WebApplication1\\WebApplication1\\wwwroot\\",
-      "BasePath": "_content/WebApplication1",
-      "RelativePath": "statistics#[.{fingerprint}]?.js",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "AssetMergeBehavior": "",
-      "AssetMergeSource": "",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "Fingerprint": "0b1h39gicd",
-      "Integrity": "JLhV4x84XVTzgrDlpaNErzzXfHBA4yl2VgGsIW5KWpU=",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\statistics.js"
+      "OriginalItemSpec": "wwwroot\\staticyears.html"
     },
     {
       "Identity": "C:\\Users\\jeived\\Desktop\\WebApplication1\\WebApplication1\\wwwroot\\style.css",
@@ -325,17 +283,38 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "nsm1vj30ai",
-      "Integrity": "WfvKszTBIEyAMSjLq/qe5qhW7yXv/PHdWg0XQZ6rtZw=",
+      "Fingerprint": "ishx6lzn7x",
+      "Integrity": "UgLD82B0Gkdjfrs8zIHitI84HhZ+WUUBVcTA611hQWU=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\style.css"
+    },
+    {
+      "Identity": "C:\\Users\\jeived\\Desktop\\WebApplication1\\WebApplication1\\wwwroot\\stylestatics.css",
+      "SourceId": "WebApplication1",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\jeived\\Desktop\\WebApplication1\\WebApplication1\\wwwroot\\",
+      "BasePath": "_content/WebApplication1",
+      "RelativePath": "stylestatics#[.{fingerprint}]?.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "lxj8tqyl4t",
+      "Integrity": "F6RqRFjGBt/6jyqlxrlMetGYkNdA7cHBpeD86Arbxnc=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\stylestatics.css"
     }
   ],
   "Endpoints": [
     {
-      "Route": "autorization.adgmujyu6n.html",
-      "AssetFile": "C:\\Users\\jeived\\Desktop\\WebApplication1\\WebApplication1\\wwwroot\\autorization.html",
+      "Route": "actor.84pvb11fe7.png",
+      "AssetFile": "C:\\Users\\jeived\\Desktop\\WebApplication1\\WebApplication1\\wwwroot\\actor.png",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -344,19 +323,19 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "686"
+          "Value": "30008"
         },
         {
           "Name": "Content-Type",
-          "Value": "text/html"
+          "Value": "image/png"
         },
         {
           "Name": "ETag",
-          "Value": "\"XqbYyGrZ5/AZJlMC5rec3EULjOBhiK3C+hrcBR8SJaE=\""
+          "Value": "\"GBAWEuo1AlehKtziHAqbyGXJ1inbuarHQ7owCWQsRRk=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Tue, 25 Mar 2025 08:10:58 GMT"
+          "Value": "Sat, 29 Mar 2025 13:03:02 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -366,21 +345,21 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "adgmujyu6n"
+          "Value": "84pvb11fe7"
         },
         {
           "Name": "label",
-          "Value": "autorization.html"
+          "Value": "actor.png"
         },
         {
           "Name": "integrity",
-          "Value": "sha256-XqbYyGrZ5/AZJlMC5rec3EULjOBhiK3C+hrcBR8SJaE="
+          "Value": "sha256-GBAWEuo1AlehKtziHAqbyGXJ1inbuarHQ7owCWQsRRk="
         }
       ]
     },
     {
-      "Route": "autorization.html",
-      "AssetFile": "C:\\Users\\jeived\\Desktop\\WebApplication1\\WebApplication1\\wwwroot\\autorization.html",
+      "Route": "actor.png",
+      "AssetFile": "C:\\Users\\jeived\\Desktop\\WebApplication1\\WebApplication1\\wwwroot\\actor.png",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -389,29 +368,111 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "686"
+          "Value": "30008"
         },
         {
           "Name": "Content-Type",
-          "Value": "text/html"
+          "Value": "image/png"
         },
         {
           "Name": "ETag",
-          "Value": "\"XqbYyGrZ5/AZJlMC5rec3EULjOBhiK3C+hrcBR8SJaE=\""
+          "Value": "\"GBAWEuo1AlehKtziHAqbyGXJ1inbuarHQ7owCWQsRRk=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Tue, 25 Mar 2025 08:10:58 GMT"
+          "Value": "Sat, 29 Mar 2025 13:03:02 GMT"
         },
         {
           "Name": "Cache-Control",
-          "Value": "no-cache"
+          "Value": "max-age=3600, must-revalidate"
         }
       ],
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-XqbYyGrZ5/AZJlMC5rec3EULjOBhiK3C+hrcBR8SJaE="
+          "Value": "sha256-GBAWEuo1AlehKtziHAqbyGXJ1inbuarHQ7owCWQsRRk="
+        }
+      ]
+    },
+    {
+      "Route": "calendar.png",
+      "AssetFile": "C:\\Users\\jeived\\Desktop\\WebApplication1\\WebApplication1\\wwwroot\\calendar.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "21444"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"KvCk2pNaEC4RhikC8rbYtZlIcxGyk224xNSfi4Vyqhg=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sat, 29 Mar 2025 13:05:08 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-KvCk2pNaEC4RhikC8rbYtZlIcxGyk224xNSfi4Vyqhg="
+        }
+      ]
+    },
+    {
+      "Route": "calendar.qsmnt8gb6h.png",
+      "AssetFile": "C:\\Users\\jeived\\Desktop\\WebApplication1\\WebApplication1\\wwwroot\\calendar.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "21444"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"KvCk2pNaEC4RhikC8rbYtZlIcxGyk224xNSfi4Vyqhg=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sat, 29 Mar 2025 13:05:08 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "qsmnt8gb6h"
+        },
+        {
+          "Name": "label",
+          "Value": "calendar.png"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-KvCk2pNaEC4RhikC8rbYtZlIcxGyk224xNSfi4Vyqhg="
         }
       ]
     },
@@ -498,8 +559,8 @@
       ]
     },
     {
-      "Route": "filmsdetail.html",
-      "AssetFile": "C:\\Users\\jeived\\Desktop\\WebApplication1\\WebApplication1\\wwwroot\\filmsdetail.html",
+      "Route": "director.lw112lkt7i.png",
+      "AssetFile": "C:\\Users\\jeived\\Desktop\\WebApplication1\\WebApplication1\\wwwroot\\director.png",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -508,56 +569,19 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "576"
+          "Value": "31285"
         },
         {
           "Name": "Content-Type",
-          "Value": "text/html"
+          "Value": "image/png"
         },
         {
           "Name": "ETag",
-          "Value": "\"XwGXAAxCopWHzkst/axp3fKbNXCXZVBAvuUVhd0+h1w=\""
+          "Value": "\"GwrzaWXkevCh68d/SSy3fIVoq/09UkYxFkRACOrCwoc=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Tue, 25 Mar 2025 08:51:13 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "no-cache"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "integrity",
-          "Value": "sha256-XwGXAAxCopWHzkst/axp3fKbNXCXZVBAvuUVhd0+h1w="
-        }
-      ]
-    },
-    {
-      "Route": "filmsdetail.pul8u08u23.html",
-      "AssetFile": "C:\\Users\\jeived\\Desktop\\WebApplication1\\WebApplication1\\wwwroot\\filmsdetail.html",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "576"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/html"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"XwGXAAxCopWHzkst/axp3fKbNXCXZVBAvuUVhd0+h1w=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Tue, 25 Mar 2025 08:51:13 GMT"
+          "Value": "Sat, 29 Mar 2025 13:04:42 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -567,20 +591,57 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "pul8u08u23"
+          "Value": "lw112lkt7i"
         },
         {
           "Name": "label",
-          "Value": "filmsdetail.html"
+          "Value": "director.png"
         },
         {
           "Name": "integrity",
-          "Value": "sha256-XwGXAAxCopWHzkst/axp3fKbNXCXZVBAvuUVhd0+h1w="
+          "Value": "sha256-GwrzaWXkevCh68d/SSy3fIVoq/09UkYxFkRACOrCwoc="
         }
       ]
     },
     {
-      "Route": "homepage.5q0xmqtt6q.html",
+      "Route": "director.png",
+      "AssetFile": "C:\\Users\\jeived\\Desktop\\WebApplication1\\WebApplication1\\wwwroot\\director.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "31285"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"GwrzaWXkevCh68d/SSy3fIVoq/09UkYxFkRACOrCwoc=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sat, 29 Mar 2025 13:04:42 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-GwrzaWXkevCh68d/SSy3fIVoq/09UkYxFkRACOrCwoc="
+        }
+      ]
+    },
+    {
+      "Route": "homepage.9hsjearv1f.html",
       "AssetFile": "C:\\Users\\jeived\\Desktop\\WebApplication1\\WebApplication1\\wwwroot\\homepage.html",
       "Selectors": [],
       "ResponseHeaders": [
@@ -590,7 +651,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "7068"
+          "Value": "66355"
         },
         {
           "Name": "Content-Type",
@@ -598,11 +659,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"7Q/wy2UPneRsbP1LeyXDBliHCw2upNFTUXgqvoYOokw=\""
+          "Value": "\"7bx8JNlmPY1PcNCspUYLpnsEzNc/a9X7TkT8WqNhxko=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 27 Mar 2025 20:48:47 GMT"
+          "Value": "Sun, 30 Mar 2025 15:47:28 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -612,7 +673,7 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "5q0xmqtt6q"
+          "Value": "9hsjearv1f"
         },
         {
           "Name": "label",
@@ -620,7 +681,7 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-7Q/wy2UPneRsbP1LeyXDBliHCw2upNFTUXgqvoYOokw="
+          "Value": "sha256-7bx8JNlmPY1PcNCspUYLpnsEzNc/a9X7TkT8WqNhxko="
         }
       ]
     },
@@ -635,7 +696,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "7068"
+          "Value": "66355"
         },
         {
           "Name": "Content-Type",
@@ -643,11 +704,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"7Q/wy2UPneRsbP1LeyXDBliHCw2upNFTUXgqvoYOokw=\""
+          "Value": "\"7bx8JNlmPY1PcNCspUYLpnsEzNc/a9X7TkT8WqNhxko=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 27 Mar 2025 20:48:47 GMT"
+          "Value": "Sun, 30 Mar 2025 15:47:28 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -657,12 +718,12 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-7Q/wy2UPneRsbP1LeyXDBliHCw2upNFTUXgqvoYOokw="
+          "Value": "sha256-7bx8JNlmPY1PcNCspUYLpnsEzNc/a9X7TkT8WqNhxko="
         }
       ]
     },
     {
-      "Route": "more.4w8rq38k3b.html",
+      "Route": "more.dmrrunxfln.html",
       "AssetFile": "C:\\Users\\jeived\\Desktop\\WebApplication1\\WebApplication1\\wwwroot\\more.html",
       "Selectors": [],
       "ResponseHeaders": [
@@ -672,7 +733,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "1728"
+          "Value": "1656"
         },
         {
           "Name": "Content-Type",
@@ -680,11 +741,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"xCuCIDs9m+YBdrJk5qgCF8oHfL8sdpDYvaYeadpwV9U=\""
+          "Value": "\"a9GOMAuj822Q+URVcRF8ntM6KVwWxfnCj82fSxSBE/k=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Fri, 28 Mar 2025 04:17:48 GMT"
+          "Value": "Sat, 29 Mar 2025 17:12:10 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -694,7 +755,7 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "4w8rq38k3b"
+          "Value": "dmrrunxfln"
         },
         {
           "Name": "label",
@@ -702,7 +763,7 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-xCuCIDs9m+YBdrJk5qgCF8oHfL8sdpDYvaYeadpwV9U="
+          "Value": "sha256-a9GOMAuj822Q+URVcRF8ntM6KVwWxfnCj82fSxSBE/k="
         }
       ]
     },
@@ -717,7 +778,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "1728"
+          "Value": "1656"
         },
         {
           "Name": "Content-Type",
@@ -725,11 +786,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"xCuCIDs9m+YBdrJk5qgCF8oHfL8sdpDYvaYeadpwV9U=\""
+          "Value": "\"a9GOMAuj822Q+URVcRF8ntM6KVwWxfnCj82fSxSBE/k=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Fri, 28 Mar 2025 04:17:48 GMT"
+          "Value": "Sat, 29 Mar 2025 17:12:10 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -739,7 +800,7 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-xCuCIDs9m+YBdrJk5qgCF8oHfL8sdpDYvaYeadpwV9U="
+          "Value": "sha256-a9GOMAuj822Q+URVcRF8ntM6KVwWxfnCj82fSxSBE/k="
         }
       ]
     },
@@ -754,7 +815,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "1590"
+          "Value": "1499"
         },
         {
           "Name": "Content-Type",
@@ -762,11 +823,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"cI9Vj4sLRhpIc0ErZrGJxDxWQ9hnYYITTi4cb92y9A8=\""
+          "Value": "\"hyKsjXqswD3/iF0PJ30m6NyzQruFAfaMkxyBaaZnTDQ=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Fri, 28 Mar 2025 04:15:56 GMT"
+          "Value": "Sat, 29 Mar 2025 17:16:14 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -776,52 +837,7 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-cI9Vj4sLRhpIc0ErZrGJxDxWQ9hnYYITTi4cb92y9A8="
-        }
-      ]
-    },
-    {
-      "Route": "movie-detail.enx7nb3t2k.js",
-      "AssetFile": "C:\\Users\\jeived\\Desktop\\WebApplication1\\WebApplication1\\wwwroot\\movie-detail.js",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "3345"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/javascript"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"GpmkiTjofG9YMDgno5bct3K4In1eNIAPhzVmkBto7nE=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Fri, 28 Mar 2025 04:23:07 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "fingerprint",
-          "Value": "enx7nb3t2k"
-        },
-        {
-          "Name": "label",
-          "Value": "movie-detail.js"
-        },
-        {
-          "Name": "integrity",
-          "Value": "sha256-GpmkiTjofG9YMDgno5bct3K4In1eNIAPhzVmkBto7nE="
+          "Value": "sha256-hyKsjXqswD3/iF0PJ30m6NyzQruFAfaMkxyBaaZnTDQ="
         }
       ]
     },
@@ -836,7 +852,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "3345"
+          "Value": "3357"
         },
         {
           "Name": "Content-Type",
@@ -844,11 +860,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"GpmkiTjofG9YMDgno5bct3K4In1eNIAPhzVmkBto7nE=\""
+          "Value": "\"n+IFOjZfoWZj/1q8Btsa+lkjvhXwB8jzCWyjNkjB6xM=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Fri, 28 Mar 2025 04:23:07 GMT"
+          "Value": "Sat, 29 Mar 2025 06:56:59 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -858,12 +874,57 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-GpmkiTjofG9YMDgno5bct3K4In1eNIAPhzVmkBto7nE="
+          "Value": "sha256-n+IFOjZfoWZj/1q8Btsa+lkjvhXwB8jzCWyjNkjB6xM="
         }
       ]
     },
     {
-      "Route": "movie-detail.oqv73o79ev.css",
+      "Route": "movie-detail.n6jilnotv9.js",
+      "AssetFile": "C:\\Users\\jeived\\Desktop\\WebApplication1\\WebApplication1\\wwwroot\\movie-detail.js",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "3357"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"n+IFOjZfoWZj/1q8Btsa+lkjvhXwB8jzCWyjNkjB6xM=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sat, 29 Mar 2025 06:56:59 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "n6jilnotv9"
+        },
+        {
+          "Name": "label",
+          "Value": "movie-detail.js"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-n+IFOjZfoWZj/1q8Btsa+lkjvhXwB8jzCWyjNkjB6xM="
+        }
+      ]
+    },
+    {
+      "Route": "movie-detail.psb7azvo1c.css",
       "AssetFile": "C:\\Users\\jeived\\Desktop\\WebApplication1\\WebApplication1\\wwwroot\\movie-detail.css",
       "Selectors": [],
       "ResponseHeaders": [
@@ -873,7 +934,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "1590"
+          "Value": "1499"
         },
         {
           "Name": "Content-Type",
@@ -881,11 +942,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"cI9Vj4sLRhpIc0ErZrGJxDxWQ9hnYYITTi4cb92y9A8=\""
+          "Value": "\"hyKsjXqswD3/iF0PJ30m6NyzQruFAfaMkxyBaaZnTDQ=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Fri, 28 Mar 2025 04:15:56 GMT"
+          "Value": "Sat, 29 Mar 2025 17:16:14 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -895,7 +956,7 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "oqv73o79ev"
+          "Value": "psb7azvo1c"
         },
         {
           "Name": "label",
@@ -903,13 +964,13 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-cI9Vj4sLRhpIc0ErZrGJxDxWQ9hnYYITTi4cb92y9A8="
+          "Value": "sha256-hyKsjXqswD3/iF0PJ30m6NyzQruFAfaMkxyBaaZnTDQ="
         }
       ]
     },
     {
-      "Route": "PageAdmin.fxvwl1oh59.html",
-      "AssetFile": "C:\\Users\\jeived\\Desktop\\WebApplication1\\WebApplication1\\wwwroot\\PageAdmin.html",
+      "Route": "staticactor.8n0hrraian.html",
+      "AssetFile": "C:\\Users\\jeived\\Desktop\\WebApplication1\\WebApplication1\\wwwroot\\staticactor.html",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -918,7 +979,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "1341"
+          "Value": "8312"
         },
         {
           "Name": "Content-Type",
@@ -926,11 +987,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"owIRVIm9b6on0XasEUTHnshh56O+mCRgtTfwlYMH+0Y=\""
+          "Value": "\"fHvzvsN7vqm4rXqF1XQxMQuRmWYMda9jOq3cHc8UWpM=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Tue, 25 Mar 2025 08:20:16 GMT"
+          "Value": "Sat, 29 Mar 2025 17:29:10 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -940,21 +1001,21 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "fxvwl1oh59"
+          "Value": "8n0hrraian"
         },
         {
           "Name": "label",
-          "Value": "PageAdmin.html"
+          "Value": "staticactor.html"
         },
         {
           "Name": "integrity",
-          "Value": "sha256-owIRVIm9b6on0XasEUTHnshh56O+mCRgtTfwlYMH+0Y="
+          "Value": "sha256-fHvzvsN7vqm4rXqF1XQxMQuRmWYMda9jOq3cHc8UWpM="
         }
       ]
     },
     {
-      "Route": "PageAdmin.html",
-      "AssetFile": "C:\\Users\\jeived\\Desktop\\WebApplication1\\WebApplication1\\wwwroot\\PageAdmin.html",
+      "Route": "staticactor.html",
+      "AssetFile": "C:\\Users\\jeived\\Desktop\\WebApplication1\\WebApplication1\\wwwroot\\staticactor.html",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -963,7 +1024,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "1341"
+          "Value": "8312"
         },
         {
           "Name": "Content-Type",
@@ -971,11 +1032,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"owIRVIm9b6on0XasEUTHnshh56O+mCRgtTfwlYMH+0Y=\""
+          "Value": "\"fHvzvsN7vqm4rXqF1XQxMQuRmWYMda9jOq3cHc8UWpM=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Tue, 25 Mar 2025 08:20:16 GMT"
+          "Value": "Sat, 29 Mar 2025 17:29:10 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -985,13 +1046,13 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-owIRVIm9b6on0XasEUTHnshh56O+mCRgtTfwlYMH+0Y="
+          "Value": "sha256-fHvzvsN7vqm4rXqF1XQxMQuRmWYMda9jOq3cHc8UWpM="
         }
       ]
     },
     {
-      "Route": "Registration.7aangpnmda.html",
-      "AssetFile": "C:\\Users\\jeived\\Desktop\\WebApplication1\\WebApplication1\\wwwroot\\Registration.html",
+      "Route": "staticdirector.html",
+      "AssetFile": "C:\\Users\\jeived\\Desktop\\WebApplication1\\WebApplication1\\wwwroot\\staticdirector.html",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -1000,7 +1061,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "698"
+          "Value": "8388"
         },
         {
           "Name": "Content-Type",
@@ -1008,11 +1069,48 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"z5ddoN/PNRF+9w6Njdp5rVQyp2oPaLjDiRHSIQp8GxQ=\""
+          "Value": "\"967WLLC/PUS0lZ+UJKUWY5uTXjUajI6Rej1gFfsaTNI=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Tue, 25 Mar 2025 08:11:10 GMT"
+          "Value": "Sat, 29 Mar 2025 17:29:04 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-967WLLC/PUS0lZ+UJKUWY5uTXjUajI6Rej1gFfsaTNI="
+        }
+      ]
+    },
+    {
+      "Route": "staticdirector.t3k938svho.html",
+      "AssetFile": "C:\\Users\\jeived\\Desktop\\WebApplication1\\WebApplication1\\wwwroot\\staticdirector.html",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "8388"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/html"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"967WLLC/PUS0lZ+UJKUWY5uTXjUajI6Rej1gFfsaTNI=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sat, 29 Mar 2025 17:29:04 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1022,21 +1120,21 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "7aangpnmda"
+          "Value": "t3k938svho"
         },
         {
           "Name": "label",
-          "Value": "Registration.html"
+          "Value": "staticdirector.html"
         },
         {
           "Name": "integrity",
-          "Value": "sha256-z5ddoN/PNRF+9w6Njdp5rVQyp2oPaLjDiRHSIQp8GxQ="
+          "Value": "sha256-967WLLC/PUS0lZ+UJKUWY5uTXjUajI6Rej1gFfsaTNI="
         }
       ]
     },
     {
-      "Route": "Registration.html",
-      "AssetFile": "C:\\Users\\jeived\\Desktop\\WebApplication1\\WebApplication1\\wwwroot\\Registration.html",
+      "Route": "staticgenres.html",
+      "AssetFile": "C:\\Users\\jeived\\Desktop\\WebApplication1\\WebApplication1\\wwwroot\\staticgenres.html",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -1045,7 +1143,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "698"
+          "Value": "8574"
         },
         {
           "Name": "Content-Type",
@@ -1053,11 +1151,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"z5ddoN/PNRF+9w6Njdp5rVQyp2oPaLjDiRHSIQp8GxQ=\""
+          "Value": "\"9b0kzOszXQH0zPTuyWkuBR+LcuHDQqohHTu0kmCJuuY=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Tue, 25 Mar 2025 08:11:10 GMT"
+          "Value": "Sat, 29 Mar 2025 17:28:58 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1067,13 +1165,13 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-z5ddoN/PNRF+9w6Njdp5rVQyp2oPaLjDiRHSIQp8GxQ="
+          "Value": "sha256-9b0kzOszXQH0zPTuyWkuBR+LcuHDQqohHTu0kmCJuuY="
         }
       ]
     },
     {
-      "Route": "script.bftwy87mm4.js",
-      "AssetFile": "C:\\Users\\jeived\\Desktop\\WebApplication1\\WebApplication1\\wwwroot\\script.js",
+      "Route": "staticgenres.nxl8xcrsis.html",
+      "AssetFile": "C:\\Users\\jeived\\Desktop\\WebApplication1\\WebApplication1\\wwwroot\\staticgenres.html",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -1082,19 +1180,19 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "26667"
+          "Value": "8574"
         },
         {
           "Name": "Content-Type",
-          "Value": "text/javascript"
+          "Value": "text/html"
         },
         {
           "Name": "ETag",
-          "Value": "\"9868gmj0hJkyHQQc+5LhZaHu2Ba+62JliEeDaCPA3+o=\""
+          "Value": "\"9b0kzOszXQH0zPTuyWkuBR+LcuHDQqohHTu0kmCJuuY=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Fri, 28 Mar 2025 05:18:04 GMT"
+          "Value": "Sat, 29 Mar 2025 17:28:58 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1104,21 +1202,21 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "bftwy87mm4"
+          "Value": "nxl8xcrsis"
         },
         {
           "Name": "label",
-          "Value": "script.js"
+          "Value": "staticgenres.html"
         },
         {
           "Name": "integrity",
-          "Value": "sha256-9868gmj0hJkyHQQc+5LhZaHu2Ba+62JliEeDaCPA3+o="
+          "Value": "sha256-9b0kzOszXQH0zPTuyWkuBR+LcuHDQqohHTu0kmCJuuY="
         }
       ]
     },
     {
-      "Route": "script.js",
-      "AssetFile": "C:\\Users\\jeived\\Desktop\\WebApplication1\\WebApplication1\\wwwroot\\script.js",
+      "Route": "staticyears.9mzbrjvqnj.html",
+      "AssetFile": "C:\\Users\\jeived\\Desktop\\WebApplication1\\WebApplication1\\wwwroot\\staticyears.html",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -1127,44 +1225,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "26667"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/javascript"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"9868gmj0hJkyHQQc+5LhZaHu2Ba+62JliEeDaCPA3+o=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Fri, 28 Mar 2025 05:18:04 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "no-cache"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "integrity",
-          "Value": "sha256-9868gmj0hJkyHQQc+5LhZaHu2Ba+62JliEeDaCPA3+o="
-        }
-      ]
-    },
-    {
-      "Route": "staticfilms.html",
-      "AssetFile": "C:\\Users\\jeived\\Desktop\\WebApplication1\\WebApplication1\\wwwroot\\staticfilms.html",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "810"
+          "Value": "8204"
         },
         {
           "Name": "Content-Type",
@@ -1172,48 +1233,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"gVWA1oXFnoAvcuBYc7/OJ+EbJQsEy4RjyQMZcxMKfO4=\""
+          "Value": "\"79+wWPYfjaD+Tavgu1bJ7w3RDcy01vxkAkky3Sz5JPs=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Tue, 25 Mar 2025 08:50:49 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "no-cache"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "integrity",
-          "Value": "sha256-gVWA1oXFnoAvcuBYc7/OJ+EbJQsEy4RjyQMZcxMKfO4="
-        }
-      ]
-    },
-    {
-      "Route": "staticfilms.p6hm50f9e8.html",
-      "AssetFile": "C:\\Users\\jeived\\Desktop\\WebApplication1\\WebApplication1\\wwwroot\\staticfilms.html",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "810"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/html"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"gVWA1oXFnoAvcuBYc7/OJ+EbJQsEy4RjyQMZcxMKfO4=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Tue, 25 Mar 2025 08:50:49 GMT"
+          "Value": "Sat, 29 Mar 2025 17:29:07 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1223,21 +1247,21 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "p6hm50f9e8"
+          "Value": "9mzbrjvqnj"
         },
         {
           "Name": "label",
-          "Value": "staticfilms.html"
+          "Value": "staticyears.html"
         },
         {
           "Name": "integrity",
-          "Value": "sha256-gVWA1oXFnoAvcuBYc7/OJ+EbJQsEy4RjyQMZcxMKfO4="
+          "Value": "sha256-79+wWPYfjaD+Tavgu1bJ7w3RDcy01vxkAkky3Sz5JPs="
         }
       ]
     },
     {
-      "Route": "statistics.0b1h39gicd.js",
-      "AssetFile": "C:\\Users\\jeived\\Desktop\\WebApplication1\\WebApplication1\\wwwroot\\statistics.js",
+      "Route": "staticyears.html",
+      "AssetFile": "C:\\Users\\jeived\\Desktop\\WebApplication1\\WebApplication1\\wwwroot\\staticyears.html",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -1246,134 +1270,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "5358"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/javascript"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"JLhV4x84XVTzgrDlpaNErzzXfHBA4yl2VgGsIW5KWpU=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Thu, 27 Mar 2025 20:42:30 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "fingerprint",
-          "Value": "0b1h39gicd"
-        },
-        {
-          "Name": "label",
-          "Value": "statistics.js"
-        },
-        {
-          "Name": "integrity",
-          "Value": "sha256-JLhV4x84XVTzgrDlpaNErzzXfHBA4yl2VgGsIW5KWpU="
-        }
-      ]
-    },
-    {
-      "Route": "statistics.6g8gz7p6m6.css",
-      "AssetFile": "C:\\Users\\jeived\\Desktop\\WebApplication1\\WebApplication1\\wwwroot\\statistics.css",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "1394"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/css"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"xh3DeDEgvkk4EmxrBv7RnWYt4LADF6pWg4BcyfHAIdc=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Thu, 27 Mar 2025 20:42:30 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "fingerprint",
-          "Value": "6g8gz7p6m6"
-        },
-        {
-          "Name": "label",
-          "Value": "statistics.css"
-        },
-        {
-          "Name": "integrity",
-          "Value": "sha256-xh3DeDEgvkk4EmxrBv7RnWYt4LADF6pWg4BcyfHAIdc="
-        }
-      ]
-    },
-    {
-      "Route": "statistics.css",
-      "AssetFile": "C:\\Users\\jeived\\Desktop\\WebApplication1\\WebApplication1\\wwwroot\\statistics.css",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "1394"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/css"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"xh3DeDEgvkk4EmxrBv7RnWYt4LADF6pWg4BcyfHAIdc=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Thu, 27 Mar 2025 20:42:30 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "no-cache"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "integrity",
-          "Value": "sha256-xh3DeDEgvkk4EmxrBv7RnWYt4LADF6pWg4BcyfHAIdc="
-        }
-      ]
-    },
-    {
-      "Route": "statistics.html",
-      "AssetFile": "C:\\Users\\jeived\\Desktop\\WebApplication1\\WebApplication1\\wwwroot\\statistics.html",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "2184"
+          "Value": "8204"
         },
         {
           "Name": "Content-Type",
@@ -1381,11 +1278,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"NFylu6b374ZzTymvH5ieY34fDAODCNeZzQf1Mc0MfQA=\""
+          "Value": "\"79+wWPYfjaD+Tavgu1bJ7w3RDcy01vxkAkky3Sz5JPs=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 27 Mar 2025 20:42:30 GMT"
+          "Value": "Sat, 29 Mar 2025 17:29:07 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1395,89 +1292,7 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-NFylu6b374ZzTymvH5ieY34fDAODCNeZzQf1Mc0MfQA="
-        }
-      ]
-    },
-    {
-      "Route": "statistics.js",
-      "AssetFile": "C:\\Users\\jeived\\Desktop\\WebApplication1\\WebApplication1\\wwwroot\\statistics.js",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "5358"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/javascript"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"JLhV4x84XVTzgrDlpaNErzzXfHBA4yl2VgGsIW5KWpU=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Thu, 27 Mar 2025 20:42:30 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "no-cache"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "integrity",
-          "Value": "sha256-JLhV4x84XVTzgrDlpaNErzzXfHBA4yl2VgGsIW5KWpU="
-        }
-      ]
-    },
-    {
-      "Route": "statistics.kkpvtj29f8.html",
-      "AssetFile": "C:\\Users\\jeived\\Desktop\\WebApplication1\\WebApplication1\\wwwroot\\statistics.html",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "2184"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/html"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"NFylu6b374ZzTymvH5ieY34fDAODCNeZzQf1Mc0MfQA=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Thu, 27 Mar 2025 20:42:30 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "fingerprint",
-          "Value": "kkpvtj29f8"
-        },
-        {
-          "Name": "label",
-          "Value": "statistics.html"
-        },
-        {
-          "Name": "integrity",
-          "Value": "sha256-NFylu6b374ZzTymvH5ieY34fDAODCNeZzQf1Mc0MfQA="
+          "Value": "sha256-79+wWPYfjaD+Tavgu1bJ7w3RDcy01vxkAkky3Sz5JPs="
         }
       ]
     },
@@ -1492,7 +1307,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "6123"
+          "Value": "6207"
         },
         {
           "Name": "Content-Type",
@@ -1500,11 +1315,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"WfvKszTBIEyAMSjLq/qe5qhW7yXv/PHdWg0XQZ6rtZw=\""
+          "Value": "\"UgLD82B0Gkdjfrs8zIHitI84HhZ+WUUBVcTA611hQWU=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 27 Mar 2025 11:56:44 GMT"
+          "Value": "Sat, 29 Mar 2025 17:18:14 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1514,12 +1329,12 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-WfvKszTBIEyAMSjLq/qe5qhW7yXv/PHdWg0XQZ6rtZw="
+          "Value": "sha256-UgLD82B0Gkdjfrs8zIHitI84HhZ+WUUBVcTA611hQWU="
         }
       ]
     },
     {
-      "Route": "style.nsm1vj30ai.css",
+      "Route": "style.ishx6lzn7x.css",
       "AssetFile": "C:\\Users\\jeived\\Desktop\\WebApplication1\\WebApplication1\\wwwroot\\style.css",
       "Selectors": [],
       "ResponseHeaders": [
@@ -1529,7 +1344,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "6123"
+          "Value": "6207"
         },
         {
           "Name": "Content-Type",
@@ -1537,11 +1352,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"WfvKszTBIEyAMSjLq/qe5qhW7yXv/PHdWg0XQZ6rtZw=\""
+          "Value": "\"UgLD82B0Gkdjfrs8zIHitI84HhZ+WUUBVcTA611hQWU=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 27 Mar 2025 11:56:44 GMT"
+          "Value": "Sat, 29 Mar 2025 17:18:14 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1551,7 +1366,7 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "nsm1vj30ai"
+          "Value": "ishx6lzn7x"
         },
         {
           "Name": "label",
@@ -1559,7 +1374,89 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-WfvKszTBIEyAMSjLq/qe5qhW7yXv/PHdWg0XQZ6rtZw="
+          "Value": "sha256-UgLD82B0Gkdjfrs8zIHitI84HhZ+WUUBVcTA611hQWU="
+        }
+      ]
+    },
+    {
+      "Route": "stylestatics.css",
+      "AssetFile": "C:\\Users\\jeived\\Desktop\\WebApplication1\\WebApplication1\\wwwroot\\stylestatics.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "6164"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"F6RqRFjGBt/6jyqlxrlMetGYkNdA7cHBpeD86Arbxnc=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sat, 29 Mar 2025 17:31:03 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-F6RqRFjGBt/6jyqlxrlMetGYkNdA7cHBpeD86Arbxnc="
+        }
+      ]
+    },
+    {
+      "Route": "stylestatics.lxj8tqyl4t.css",
+      "AssetFile": "C:\\Users\\jeived\\Desktop\\WebApplication1\\WebApplication1\\wwwroot\\stylestatics.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "6164"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"F6RqRFjGBt/6jyqlxrlMetGYkNdA7cHBpeD86Arbxnc=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sat, 29 Mar 2025 17:31:03 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "lxj8tqyl4t"
+        },
+        {
+          "Name": "label",
+          "Value": "stylestatics.css"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-F6RqRFjGBt/6jyqlxrlMetGYkNdA7cHBpeD86Arbxnc="
         }
       ]
     }

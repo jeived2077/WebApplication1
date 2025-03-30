@@ -1,24 +1,20 @@
 {
   "Files": [
     {
-      "Id": "C:\\Users\\jeived\\Desktop\\WebApplication1\\WebApplication1\\wwwroot\\PageAdmin.html",
-      "PackagePath": "staticwebassets\\PageAdmin.html"
+      "Id": "C:\\Users\\jeived\\Desktop\\WebApplication1\\WebApplication1\\wwwroot\\actor.png",
+      "PackagePath": "staticwebassets\\actor.png"
     },
     {
-      "Id": "C:\\Users\\jeived\\Desktop\\WebApplication1\\WebApplication1\\wwwroot\\Registration.html",
-      "PackagePath": "staticwebassets\\Registration.html"
-    },
-    {
-      "Id": "C:\\Users\\jeived\\Desktop\\WebApplication1\\WebApplication1\\wwwroot\\autorization.html",
-      "PackagePath": "staticwebassets\\autorization.html"
+      "Id": "C:\\Users\\jeived\\Desktop\\WebApplication1\\WebApplication1\\wwwroot\\calendar.png",
+      "PackagePath": "staticwebassets\\calendar.png"
     },
     {
       "Id": "C:\\Users\\jeived\\Desktop\\WebApplication1\\WebApplication1\\wwwroot\\databasestructure.txt",
       "PackagePath": "staticwebassets\\databasestructure.txt"
     },
     {
-      "Id": "C:\\Users\\jeived\\Desktop\\WebApplication1\\WebApplication1\\wwwroot\\filmsdetail.html",
-      "PackagePath": "staticwebassets\\filmsdetail.html"
+      "Id": "C:\\Users\\jeived\\Desktop\\WebApplication1\\WebApplication1\\wwwroot\\director.png",
+      "PackagePath": "staticwebassets\\director.png"
     },
     {
       "Id": "C:\\Users\\jeived\\Desktop\\WebApplication1\\WebApplication1\\wwwroot\\homepage.html",
@@ -37,28 +33,28 @@
       "PackagePath": "staticwebassets\\movie-detail.js"
     },
     {
-      "Id": "C:\\Users\\jeived\\Desktop\\WebApplication1\\WebApplication1\\wwwroot\\script.js",
-      "PackagePath": "staticwebassets\\script.js"
+      "Id": "C:\\Users\\jeived\\Desktop\\WebApplication1\\WebApplication1\\wwwroot\\staticactor.html",
+      "PackagePath": "staticwebassets\\staticactor.html"
     },
     {
-      "Id": "C:\\Users\\jeived\\Desktop\\WebApplication1\\WebApplication1\\wwwroot\\staticfilms.html",
-      "PackagePath": "staticwebassets\\staticfilms.html"
+      "Id": "C:\\Users\\jeived\\Desktop\\WebApplication1\\WebApplication1\\wwwroot\\staticdirector.html",
+      "PackagePath": "staticwebassets\\staticdirector.html"
     },
     {
-      "Id": "C:\\Users\\jeived\\Desktop\\WebApplication1\\WebApplication1\\wwwroot\\statistics.css",
-      "PackagePath": "staticwebassets\\statistics.css"
+      "Id": "C:\\Users\\jeived\\Desktop\\WebApplication1\\WebApplication1\\wwwroot\\staticgenres.html",
+      "PackagePath": "staticwebassets\\staticgenres.html"
     },
     {
-      "Id": "C:\\Users\\jeived\\Desktop\\WebApplication1\\WebApplication1\\wwwroot\\statistics.html",
-      "PackagePath": "staticwebassets\\statistics.html"
-    },
-    {
-      "Id": "C:\\Users\\jeived\\Desktop\\WebApplication1\\WebApplication1\\wwwroot\\statistics.js",
-      "PackagePath": "staticwebassets\\statistics.js"
+      "Id": "C:\\Users\\jeived\\Desktop\\WebApplication1\\WebApplication1\\wwwroot\\staticyears.html",
+      "PackagePath": "staticwebassets\\staticyears.html"
     },
     {
       "Id": "C:\\Users\\jeived\\Desktop\\WebApplication1\\WebApplication1\\wwwroot\\style.css",
       "PackagePath": "staticwebassets\\style.css"
+    },
+    {
+      "Id": "C:\\Users\\jeived\\Desktop\\WebApplication1\\WebApplication1\\wwwroot\\stylestatics.css",
+      "PackagePath": "staticwebassets\\stylestatics.css"
     },
     {
       "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.WebApplication1.Microsoft.AspNetCore.StaticWebAssetEndpoints.props",

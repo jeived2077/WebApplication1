@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Статистика по годам</title>
+    <link rel="stylesheet" href="stylestatics.css">
+    
+</head>
+<body>
+    <nav>
+        <a href="staticgenres.html">Жанры</a>
+        <a href="staticdirector.html">Режиссеры</a>
+        <a href="staticactor.html">Актеры</a>
+        <a href="staticyears.html">Годы</a>
+        <a href="homepage.html" class="back-link">Назад</a>
+    </nav>
+    <h1>Статистика по годам</h1>
+    <div class="simple-bar-chart" id="stats-chart"></div>
+    <select id="year-select"></select>
+    <section id="movie-list">
+        <h2>Список фильмов</h2>
+        <div class="movie-grid">
+            <p id="no-movies-message" style="display:none;">Фильмы не найдены.</p>
+        </div>
+    </section>
+
+    <script>
+        const BASE_URL = "http://localhost:5184";
+        let token = localStorage.getItem("jwtToken");
+
+        const elements = {
+            yearSelect: document.getElementById("year-select"),
+            movieGrid: document.querySelector(".movie-grid"),
+            noMoviesMessage: document.getElementById("no-movies-message"),
+            statsChart: document.getElementById("stats-chart")
+        };
+
+        const colors = ["#5EB344", "#FCB72A", "#F8821A", "#E0393E", "#963D97", "#069CDB"];
+
+        async function loadYears() {
+            console.log("Загрузка годов...");
+            try {
+                const response = await fetch(`${BASE_URL}/api/statistics/years`);
+                if (!response.ok) {
+                    throw new Error(`Ошибка HTTP: ${response.status}`);
+                }
+                const years = await response.json();
+                console.log("Полученные данные годов:", years);
+
+                if (!Array.isArray(years) || years.length === 0) {
+                    console.warn("Данные годов пусты или не в формате массива");
+                    elements.statsChart.innerHTML = "<p>Нет данных для отображения</p>";
+                    return;
+                }
+
+                populateSelect(elements.yearSelect, years);
+                loadChart(years, "countsYear", "year");
+            } catch (error) {
+                console.error("Ошибка загрузки годов:", error);
+                elements.statsChart.innerHTML = `<p>Ошибка загрузки: ${error.message}</p>`;
+            }
+        }
+
+        function populateSelect(selectElement, items) {
+            if (!selectElement) {
+                console.error("Элемент year-select не найден");
+                return;
+            }
+            selectElement.innerHTML = '<option value="">Выберите год</option>' +
+                items.map(item => `<option value="${item.year}">${item.year}</option>`).join('');
+            console.log("Выпадающий список заполнен:", selectElement.innerHTML);
+        }
+
+        async function loadMoviesByYear(year) {
+            console.log(`Загрузка фильмов для года: ${year}`);
+            try {
+                const response = await fetch(`${BASE_URL}/api/movies/years/${year}`);
+                if (!response.ok) {
+                    throw new Error(`Ошибка HTTP: ${response.status}`);
+                }
+                const movies = await response.json();
+                console.log("Полученные фильмы:", movies);
+                displayMovies(movies);
+            } catch (error) {
+                console.error("Ошибка загрузки фильмов:", error);
+                elements.noMoviesMessage.style.display = "block";
+                elements.movieGrid.innerHTML = "";
+            }
+        }
+
+        function displayMovies(movies) {
+    elements.movieGrid.innerHTML = "";
+    if (!movies || movies.length === 0) {
+        console.log("Фильмы не найдены");
+        elements.noMoviesMessage.style.display = "block";
+        return;
+    }
+    elements.noMoviesMessage.style.display = "none";
+    movies.forEach(movie => {
+        const movieElement = document.createElement("figure");
+        movieElement.classList.add("movie");
+        movieElement.innerHTML = `
+            <div class="movie__hero">
+                ${movie.poster ? `<img src="${movie.poster}" alt="${movie.title}" class="movie__img">` : '<img src="https://via.placeholder.com/300x450" alt="No poster" class="movie__img">'}
+            </div>
+            <div class="movie__content">
+                <div class="movie__title">
+                    <h1 class="heading__primary">${movie.title || "Без названия"} <i class="fas fa-fire"></i></h1>
+                    <div class="movie__tag movie__tag--1">${movie.genres ? movie.genres.split(",")[0] : "#unknown"}</div>
+                    ${movie.genres && movie.genres.split(",").length > 1 ? `<div class="movie__tag movie__tag--2">${movie.genres.split(",")[1]}</div>` : ""}
+                </div>
+                <p class="movie__description">
+                    ${movie.information || "Описание отсутствует."}
+                </p>
+                <div class="movie__details">
+                    <p class="movie__detail"><img src="director.png" alt="Director" class="detail-icon">${movie.directors || "Не указан"}</p>
+                    <p class="movie__detail"><img src="actor.png" alt="Actor" class="detail-icon">${movie.actors || "Неизвестно"}</p>
+                    <p class="movie__detail"><img src="calendar.png" alt="Year" class="detail-icon">${movie.year || "Нет данных"}</p>
+                </div>
+            </div>
+        `;
+        movieElement.addEventListener("click", () => {
+                    window.location.href = `more.html?id=${movie.idfims}`;
+                });
+                elements.movieGrid.appendChild(movieElement);
+    });
+    console.log("Фильмы отображены:", movies.length);
+}
+        function loadChart(data, countKey, labelKey) {
+            if (!elements.statsChart) {
+                console.error("Элемент stats-chart не найден");
+                return;
+            }
+
+            console.log("Загрузка диаграммы с данными:", data);
+            const maxCount = Math.max(...data.map(item => item[countKey] || 0));
+            if (maxCount === 0) {
+                console.warn("Максимальное значение равно 0, диаграмма не будет отображена");
+                elements.statsChart.innerHTML = "<p>Нет данных для диаграммы</p>";
+                return;
+            }
+
+            elements.statsChart.innerHTML = data.map((item, index) => {
+                const percentage = (item[countKey] / maxCount) * 100;
+                console.log(`Элемент ${item[labelKey]}: count=${item[countKey]}, percentage=${percentage}%`);
+                return `
+                    <div class="item" style="--clr: ${colors[index % colors.length]}; --val: ${percentage}">
+                        <div class="label">${item[labelKey]}</div>
+                        <div class="value">${item[countKey]}</div>
+                    </div>
+                `;
+            }).join('');
+            console.log("Диаграмма заполнена:", elements.statsChart.innerHTML);
+        }
+
+        elements.yearSelect.onchange = function() {
+            const year = this.value;
+            console.log("Выбран год:", year);
+            if (year) loadMoviesByYear(year);
+            else displayMovies([]);
+        };
+
+        window.onload = function() {
+            console.log("Страница загружена, проверка элементов:", elements);
+            loadYears();
+        };
+    </script>
+</body>
+</html>

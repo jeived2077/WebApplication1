@@ -1,5 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Roboto', sans-serif;
     margin: 0;
     padding: 0;
     background-color: #f4f4f4;
@@ -176,12 +177,12 @@ footer {
 
 /* Стили для edit и delete button */
 .edit-button {
-    background-color: #007bff;
+    background-color: #555;
     color: white;
 }
 
     .edit-button:hover {
-        background-color: #0056b3;
+        background-color: #555;
     }
 
 .delete-button {

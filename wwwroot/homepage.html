@@ -4,8 +4,448 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Каталог Фильмов</title>
-    <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            font-size: 16px;
+            font-weight: 300;
+            color: #444;
+            background: #fff;
+            min-height: 100vh;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .container {
+            display: flex;
+            height: calc(100vh - 40px);
+        }
+
+        .sidebar {
+            width: 250px;
+            background-color: #fff;
+            padding: 1em;
+            box-shadow: 0 5px 20px 10px rgba(0, 0, 0, .2);
+            overflow-y: auto;
+        }
+
+        .sidebar h2 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .sidebar h3 {
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .main-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        header {
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        header h1 {
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        header nav {
+            position: absolute;
+            top: 0;
+            right: 0;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 10px;
+        }
+
+        header nav a,
+        header nav button {
+            text-decoration: none;
+            color: #333;
+            font-weight: bold;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        header nav a:hover,
+        header nav button:hover {
+            color: #555;
+        }
+
+        #filters {
+            margin-bottom: 40px;
+        }
+
+        #filters h2 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        #filters label {
+            margin-right: 10px;
+        }
+
+        #filters select {
+            padding: 8px;
+            font-size: 16px;
+            width: 100%;
+            max-width: 200px;
+            border-radius: 3px;
+            border: 1px solid #ccc;
+            margin-right: 20px;
+        }
+
+        #filters button {
+            padding: 8px 16px;
+            font-size: 16px;
+            background-color: #555;
+            color: #fff;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+
+        #filters button:hover {
+            background-color: #777;
+        }
+
+        #movie-list {
+            margin-top: 40px;
+        }
+
+        #movie-list h2 {
+            color: #333;
+            margin-bottom: 40px;
+        }
+
+        .movie-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(350px, 1fr));
+            gap: 1em;
+            justify-content: center;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .movie-card {
+            max-width: 800px;
+            border-radius: 5px;
+            display: flex;
+            box-shadow: 0 5px 20px 10px rgba(0, 0, 0, .2);
+            overflow: hidden;
+        }
+
+        .movie-card__hero {
+            flex: 0 0 45%;
+        }
+
+        .movie-card__img {
+            width: 100%;
+            display: block;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .movie-card__content {
+            background-color: #fff;
+            flex: 1;
+            padding: 35px 30px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .movie-card__title {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+
+        .heading__primary {
+            font-size: 16px;
+            margin-right: auto;
+            color: #555;
+        }
+
+        .fa-fire {
+            color: salmon;
+        }
+
+        .movie-card__tag {
+            font-size: 10px;
+            color: #fff;
+            padding: 2px 7px;
+            border-radius: 100px;
+            margin-right: 8px;
+            display: block;
+            text-transform: uppercase;
+        }
+
+        .movie-card__tag--1 {
+            background-color: #A9C9FF;
+        }
+
+        .movie-card__tag--2 {
+            background-color: #FFBBEC;
+        }
+
+        .movie-card__description {
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+
+        .movie-card__details {
+            display: flex;
+            margin: auto;
+        }
+
+        .movie-card__detail {
+            font-size: 13px;
+            margin-right: 20px;
+            display: flex;
+            align-items: center;
+        }
+
+        .detail-icon {
+            width: 18px;
+            height: 18px;
+            margin-right: 3px;
+            vertical-align: middle;
+        }
+
+        #no-movies-message {
+            color: #888;
+            font-style: italic;
+        }
+
+        button {
+            background-color: #555;
+            color: #fff;
+            padding: 8px 16px;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+            margin: 5px 0;
+            width: 100%;
+        }
+
+        button:hover {
+            background-color: #777;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.4);
+        }
+
+        .modal-content {
+            background-color: #fff;
+            margin: 5% auto;
+            padding: 20px;
+            border: 1px solid #ddd;
+            width: 80%;
+            max-width: 1000px;
+            border-radius: 5px;
+            box-shadow: 0 5px 20px 10px rgba(0, 0, 0, .2);
+        }
+
+        .close {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            color: #aaa;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: #333;
+        }
+
+        .modal-layout {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .movie-table-container {
+            flex: 1;
+            max-width: 50%;
+            overflow-x: auto;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+
+        .movie-table-container h3 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        #movie-table,
+        #users-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 14px;
+        }
+
+        #movie-table th,
+        #movie-table td,
+        #users-table th,
+        #users-table td {
+            padding: 8px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+
+        #movie-table th,
+        #users-table th {
+            background-color: #f9f9f9;
+            color: #333;
+            position: sticky;
+            top: 0;
+            z-index: 1;
+        }
+
+        #users-table tr.selected {
+            background-color: #e0e0e0;
+        }
+
+        .movie-form-container {
+            flex: 1;
+            max-width: 50%;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+
+        .movie-form-container h2 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        #movie-form label {
+            display: block;
+            margin-bottom: 5px;
+            color: #333;
+        }
+
+        #movie-form input,
+        #movie-form textarea,
+        #movie-form select {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+
+        #movie-form textarea {
+            resize: vertical;
+        }
+
+        .selected-items {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+            margin-bottom: 15px;
+        }
+
+        .selected-item {
+            display: inline-flex;
+            align-items: center;
+            background-color: #e0e0e0;
+            padding: 5px 10px;
+            border-radius: 15px;
+            font-size: 14px;
+        }
+
+        .selected-item span {
+            margin-right: 5px;
+        }
+
+        .selected-item .remove-item {
+            cursor: pointer;
+            color: red;
+            font-weight: bold;
+        }
+
+        .modal-buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .modal-buttons button {
+            width: auto;
+        }
+
+        .edit-button {
+            background-color: #555;
+        }
+
+        .edit-button:hover {
+            background-color: #777;
+        }
+
+        .delete-button {
+            background-color: #555;
+        }
+
+        .delete-button:hover {
+            background-color: #555;
+        }
+
+        .promote-button {
+            background-color: #555;
+        }
+
+        .promote-button:hover {
+            background-color: #555;
+        }
+
+        .demote-button {
+            background-color: #555;
+            color: #333;
+        }
+
+        .demote-button:hover {
+            background-color: #555;
+        }
+
+        #xml-upload-input {
+            display: none;
+        }
+
+        #user-actions-container {
+            margin-top: 20px;
+            display: none;
+        }
+    </style>
 </head>
 <body>
     <div class="container">
@@ -14,13 +454,15 @@
             <div id="admin-actions" style="display:none;">
                 <h3>Действия Администратора</h3>
                 <button id="add-movie">Добавить фильм</button>
+                <button id="admin-statistic-films">Статистика</button>
                 <button id="upload-xml">Загрузить XML</button>
                 <button id="download-xml">Выгрузить XML</button>
+                <button id="manage-users">Пользователи</button>
             </div>
             <div id="user-actions" style="display:none;">
                 <h3>Действия Пользователя</h3>
                 <button id="add-movie-user">Добавить фильм</button>
-				<button id="statistic_films">Статистика</button>
+                <button id="user-statistic-films">Статистика</button>
             </div>
         </aside>
 
@@ -93,30 +535,30 @@
                     <form id="movie-form">
                         <input type="hidden" id="movie-id">
                         <label for="title">Название:</label>
-                        <input type="text" id="title" required><br><br>
+                        <input type="text" id="title" required>
 
                         <label for="genre-modal">Жанры:</label>
-<select id="genre-modal"></select>
-<div id="selected-genres" class="selected-items"></div><br><br>
+                        <select id="genre-modal"></select>
+                        <div id="selected-genres" class="selected-items"></div>
 
                         <label for="director-modal">Режиссеры:</label>
                         <select id="director-modal"></select>
-                        <div id="selected-directors" class="selected-items"></div><br><br>
+                        <div id="selected-directors" class="selected-items"></div>
 
                         <label for="year">Год:</label>
-                        <input type="number" id="year" required><br><br>
+                        <input type="number" id="year" required>
 
                         <label for="description">Описание:</label>
-                        <textarea id="description" rows="4" cols="50"></textarea><br><br>
+                        <textarea id="description" rows="4" cols="50"></textarea>
 
                         <label for="actors-modal">Актёры:</label>
                         <select id="actors-modal"></select>
-                        <div id="selected-actors" class="selected-items"></div><br><br>
+                        <div id="selected-actors" class="selected-items"></div>
 
                         <label for="poster">Постер:</label>
                         <input type="file" id="poster" style="display:none;">
                         <button type="button" id="upload-poster-btn">Выбрать и загрузить постер</button>
-                        <span id="poster-status"></span><br><br>
+                        <span id="poster-status"></span>
 
                         <div class="modal-buttons">
                             <button type="submit" id="save-button">Сохранить</button>
@@ -135,9 +577,9 @@
             <h2 id="modal-title">Авторизация</h2>
             <form id="auth-form">
                 <label for="login">Логин:</label>
-                <input type="text" id="login" name="login" required><br><br>
+                <input type="text" id="login" name="login" required>
                 <label for="password">Пароль:</label>
-                <input type="password" id="password" name="password" required><br><br>
+                <input type="password" id="password" name="password" required>
                 <button type="submit" id="submit-button">Войти</button>
                 <p id="auth-error" style="color: red;"></p>
                 <p><a href="#" id="switch-auth">Перейти к регистрации</a></p>
@@ -145,6 +587,1062 @@
         </div>
     </div>
 
-    <script src="script.js"></script>
+    <div id="users-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">×</span>
+            <h2>Управление Пользователями</h2>
+            <div style="max-height: 400px; overflow-y: auto;">
+                <table id="users-table" border="1">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Логин</th>
+                            <th>Статус</th>
+                            <th>Действия</th>
+                        </tr>
+                    </thead>
+                    <tbody id="users-table-body"></tbody>
+                </table>
+            </div>
+            <div id="user-actions-container">
+                <p id="selected-user-text"></p>
+                <div class="modal-buttons" id="user-action-buttons"></div>
+            </div>
+        </div>
+    </div>
+
+    <input type="file" id="xml-upload-input" accept=".xml">
+
+    <script>
+        const BASE_URL = "http://localhost:5184";
+        let token = localStorage.getItem("jwtToken");
+
+        const elements = {
+            userInfo: document.getElementById("user-info"),
+            userLoginSpan: document.getElementById("user-login"),
+            authButton: document.getElementById("auth-button"),
+            authModal: document.getElementById("auth-modal"),
+            movieModal: document.getElementById("movie-modal"),
+            usersModal: document.getElementById("users-modal"),
+            closeModalButtons: document.getElementsByClassName("close"),
+            authForm: document.getElementById("auth-form"),
+            modalTitle: document.getElementById("modal-title"),
+            submitButton: document.getElementById("submit-button"),
+            authError: document.getElementById("auth-error"),
+            switchAuth: document.getElementById("switch-auth"),
+            adminActions: document.getElementById("admin-actions"),
+            userActions: document.getElementById("user-actions"),
+            movieGrid: document.querySelector(".movie-grid"),
+            noMoviesMessage: document.getElementById("no-movies-message"),
+            addMovieButton: document.getElementById("add-movie"),
+            addMovieUserButton: document.getElementById("add-movie-user"),
+            movieForm: document.getElementById("movie-form"),
+            genreSelect: document.getElementById("genre"),
+            directorSelect: document.getElementById("director"),
+            sortSelect: document.getElementById("sort"),
+            applyFiltersButton: document.getElementById("applyFilters"),
+            saveButton: document.getElementById("save-button"),
+            updateButton: document.getElementById("update-button"),
+            deleteButton: document.getElementById("delete-button"),
+            movieTableBody: document.getElementById("movie-table-body"),
+            usersTableBody: document.getElementById("users-table-body"),
+            uploadPosterButton: document.getElementById("upload-poster-btn"),
+            posterInput: document.getElementById("poster"),
+            posterStatus: document.getElementById("poster-status"),
+            directorModal: document.getElementById("director-modal"),
+            actorsModal: document.getElementById("actors-modal"),
+            selectedDirectors: document.getElementById("selected-directors"),
+            selectedActors: document.getElementById("selected-actors"),
+            genreModal: document.getElementById("genre-modal"),
+            selectedGenres: document.getElementById("selected-genres"),
+            adminStatisticFilms: document.getElementById("admin-statistic-films"),
+            userStatisticFilms: document.getElementById("user-statistic-films"),
+            uploadXmlButton: document.getElementById("upload-xml"),
+            downloadXmlButton: document.getElementById("download-xml"),
+            xmlUploadInput: document.getElementById("xml-upload-input"),
+            manageUsersButton: document.getElementById("manage-users"),
+            selectedUserText: document.getElementById("selected-user-text"),
+            userActionButtons: document.getElementById("user-action-buttons"),
+            userActionsContainer: document.getElementById("user-actions-container")
+        };
+
+        let selectedGenresList = [];
+        let isLoginMode = true;
+        let allMovies = [];
+        let allGenres = [];
+        let allDirectors = [];
+        let allActors = [];
+        let selectedMovieId = null;
+        let uploadedPoster = null;
+        let selectedDirectorsList = [];
+        let selectedActorsList = [];
+        let selectedUser = null;
+
+        function ShowStaticsFilms() {
+            window.location.href = "staticgenres.html";
+        }
+
+        async function addGenre() {
+            const genreName = prompt("Введите название жанра:");
+            if (!genreName) return;
+
+            try {
+                const response = await fetch(`${BASE_URL}/api/genres`, {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Authorization": `Bearer ${token}`
+                    },
+                    body: JSON.stringify({ name: genreName })
+                });
+
+                const result = await response.json();
+                if (response.ok && result.success) {
+                    alert(result.message);
+                    await loadMovies();
+                    populateSelect(elements.genreModal, allGenres, true);
+                    selectedGenresList.push(genreName);
+                    updateSelectedItems(elements.selectedGenres, selectedGenresList, "genres");
+                } else {
+                    alert(result.message);
+                }
+            } catch (error) {
+                console.error("Ошибка при добавлении жанра:", error);
+                alert(`Ошибка запроса: ${error.message}`);
+            }
+        }
+
+        async function addDirector() {
+            const firstName = prompt("Введите имя режиссёра:");
+            const lastName = prompt("Введите фамилию режиссёра:");
+            if (!firstName || !lastName) return;
+
+            try {
+                const response = await fetch(`${BASE_URL}/api/directors`, {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Authorization": `Bearer ${token}`
+                    },
+                    body: JSON.stringify({ firstName, lastName })
+                });
+
+                const result = await response.json();
+                if (response.ok && result.success) {
+                    alert(result.message);
+                    await loadMovies();
+                    populateSelect(elements.directorModal, allDirectors, true);
+                    const fullName = `${firstName} ${lastName}`.trim();
+                    selectedDirectorsList.push(fullName);
+                    updateSelectedItems(elements.selectedDirectors, selectedDirectorsList, "directors");
+                } else {
+                    alert(result.message);
+                }
+            } catch (error) {
+                console.error("Ошибка при добавлении режиссёра:", error);
+                alert(`Ошибка запроса: ${error.message}`);
+            }
+        }
+
+        async function addActor() {
+            const firstName = prompt("Введите имя актёра:");
+            const lastName = prompt("Введите фамилию актёра:");
+            if (!firstName || !lastName) return;
+
+            try {
+                const response = await fetch(`${BASE_URL}/api/actors`, {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Authorization": `Bearer ${token}`
+                    },
+                    body: JSON.stringify({ firstName, lastName })
+                });
+
+                const result = await response.json();
+                if (response.ok && result.success) {
+                    alert(result.message);
+                    await loadMovies();
+                    populateSelect(elements.actorsModal, allActors, true);
+                    const fullName = `${firstName} ${lastName}`.trim();
+                    selectedActorsList.push(fullName);
+                    updateSelectedItems(elements.selectedActors, selectedActorsList, "actors");
+                } else {
+                    alert(result.message);
+                }
+            } catch (error) {
+                console.error("Ошибка при добавлении актёра:", error);
+                alert(`Ошибка запроса: ${error.message}`);
+            }
+        }
+
+        function checkAuth() {
+            elements.adminActions.style.display = "none";
+            elements.userActions.style.display = "none";
+
+            if (token) {
+                try {
+                    const payload = JSON.parse(atob(token.split('.')[1]));
+                    const login = payload["http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name"] || payload["name"];
+                    const role = payload["http://schemas.microsoft.com/ws/2008/06/identity/claims/role"] || payload["role"];
+                    const userId = payload["http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier"];
+
+                    if (!login) throw new Error("Логин не найден в токене");
+
+                    elements.userLoginSpan.textContent = login;
+                    elements.userInfo.style.display = "inline";
+                    elements.authButton.textContent = "Выйти";
+                    elements.authButton.onclick = logout;
+
+                    if (role === "admin") {
+                        elements.adminActions.style.display = "block";
+                        if (elements.adminStatisticFilms) {
+                            elements.adminStatisticFilms.onclick = ShowStaticsFilms;
+                        }
+                        if (elements.manageUsersButton) {
+                            elements.manageUsersButton.onclick = showUsersModal;
+                        }
+                    } else if (role === "user") {
+                        elements.userActions.style.display = "block";
+                        if (elements.userStatisticFilms) {
+                            elements.userStatisticFilms.onclick = ShowStaticsFilms;
+                        }
+                    } else {
+                        elements.userActions.style.display = "block";
+                        elements.addMovieUserButton.style.display = "none";
+                        if (elements.userStatisticFilms) {
+                            elements.userStatisticFilms.onclick = ShowStaticsFilms;
+                        }
+                    }
+
+                    localStorage.setItem("userId", userId);
+                } catch (e) {
+                    console.error("Ошибка декодирования токена:", e);
+                    logout();
+                }
+            } else {
+                elements.userInfo.style.display = "none";
+                elements.authButton.textContent = "Войти";
+                elements.authButton.onclick = showAuthModal;
+                elements.userActions.style.display = "block";
+                elements.addMovieUserButton.style.display = "none";
+                if (elements.userStatisticFilms) {
+                    elements.userStatisticFilms.onclick = ShowStaticsFilms;
+                }
+            }
+        }
+
+        function showAuthModal() {
+            elements.authModal.style.display = "block";
+            elements.modalTitle.textContent = "Авторизация";
+            elements.submitButton.textContent = "Войти";
+            isLoginMode = true;
+            elements.authError.textContent = "";
+        }
+
+        Array.from(elements.closeModalButtons).forEach(button => {
+            button.onclick = function() {
+                const modal = this.closest(".modal");
+                if (modal) modal.style.display = "none";
+                selectedUser = null;
+                updateUserActions();
+            };
+        });
+
+        elements.switchAuth.onclick = function(e) {
+            e.preventDefault();
+            isLoginMode = !isLoginMode;
+            elements.modalTitle.textContent = isLoginMode ? "Авторизация" : "Регистрация";
+            elements.submitButton.textContent = isLoginMode ? "Войти" : "Зарегистрироваться";
+            elements.switchAuth.textContent = isLoginMode ? "Перейти к регистрации" : "Перейти к авторизации";
+            elements.authError.textContent = "";
+        };
+
+        function logout() {
+            localStorage.removeItem("jwtToken");
+            localStorage.removeItem("userId");
+            token = null;
+            checkAuth();
+            loadMovies();
+        }
+
+        elements.authForm.onsubmit = async function(e) {
+            e.preventDefault();
+            const login = document.getElementById("login").value;
+            const password = document.getElementById("password").value;
+
+            try {
+                const url = isLoginMode ? `${BASE_URL}/api/auth/login` : `${BASE_URL}/api/auth/register`;
+                const response = await fetch(url, {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ login, password })
+                });
+
+                const text = await response.text();
+                if (response.ok) {
+                    token = text;
+                    localStorage.setItem("jwtToken", token);
+                    elements.authModal.style.display = "none";
+                    checkAuth();
+                    loadMovies();
+                } else {
+                    elements.authError.textContent = text;
+                }
+            } catch (error) {
+                elements.authError.textContent = `Ошибка запроса: ${error.message}`;
+            }
+        };
+
+        async function loadMovies() {
+            try {
+                const response = await fetch(`${BASE_URL}/api/movies`);
+                if (!response.ok) throw new Error(`Ошибка загрузки данных: ${response.statusText}`);
+                const data = await response.json();
+
+                allMovies = data.movies || [];
+                allGenres = data.genres || [];
+                allDirectors = data.directors || [];
+                allActors = data.actors || [];
+
+                populateSelect(elements.genreSelect, allGenres);
+                populateSelect(elements.directorSelect, allDirectors);
+                populateSelect(elements.directorModal, allDirectors, true);
+                populateSelect(elements.actorsModal, allActors, true);
+                populateSelect(elements.genreModal, allGenres, true);
+
+                applyFilters();
+                populateMovieTable();
+            } catch (error) {
+                console.error("Ошибка при загрузке данных:", error);
+                elements.movieGrid.innerHTML = "";
+                elements.noMoviesMessage.style.display = "block";
+                elements.noMoviesMessage.textContent = "Ошибка загрузки данных";
+            }
+        }
+
+        function populateSelect(selectElement, items, addNewOption = false) {
+            if (!selectElement) {
+                console.error("Элемент select не найден");
+                return;
+            }
+
+            const isGenreSelect = selectElement === elements.genreSelect;
+            if (isGenreSelect) {
+                selectElement.innerHTML = '<option value="">Выберите</option>' +
+                    items.map(item => `<option value="${item}">${item}</option>`).join('');
+            } else {
+                selectElement.innerHTML = items.length === 0
+                    ? '<option value="">Нету данных</option>'
+                    : '<option value="">Выберите</option>' + items.map(item => `<option value="${item}">${item}</option>`).join('');
+            }
+
+            if (addNewOption) {
+                selectElement.innerHTML += '<option value="add-new">Добавить новый...</option>';
+            }
+        }
+
+        elements.uploadPosterButton.onclick = function() {
+            elements.posterInput.click();
+        };
+
+        elements.posterInput.addEventListener("change", function(e) {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(event) {
+                    uploadedPoster = event.target.result;
+                    elements.posterStatus.textContent = "Постер успешно загружен!";
+                    elements.posterStatus.style.color = "green";
+                };
+                reader.onerror = function() {
+                    elements.posterStatus.textContent = "Ошибка при загрузке постера";
+                    elements.posterStatus.style.color = "red";
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+
+        function applyFilters() {
+            const genreFilter = elements.genreSelect.value;
+            const directorFilter = elements.directorSelect.value;
+            const sortOrder = elements.sortSelect.value;
+
+            let filteredMovies = [...allMovies];
+
+            if (selectedGenresList.length > 0) {
+                filteredMovies = filteredMovies.filter(movie =>
+                    movie.genres && selectedGenresList.some(genre =>
+                        movie.genres.split(", ").includes(genre)));
+            } else if (genreFilter && genreFilter !== "Нету данных") {
+                filteredMovies = filteredMovies.filter(movie =>
+                    movie.genres && movie.genres.split(", ").includes(genreFilter));
+            }
+
+            if (directorFilter && directorFilter !== "Нету данных") {
+                filteredMovies = filteredMovies.filter(movie =>
+                    movie.directors && movie.directors.includes(directorFilter));
+            }
+
+            if (sortOrder === "asc") {
+                filteredMovies.sort((a, b) => parseInt(a.year) - parseInt(b.year));
+            } else if (sortOrder === "desc") {
+                filteredMovies.sort((a, b) => parseInt(b.year) - parseInt(a.year));
+            }
+
+            elements.movieGrid.innerHTML = "";
+            if (filteredMovies.length === 0) {
+                elements.noMoviesMessage.style.display = "block";
+                elements.noMoviesMessage.textContent = "Фильмы не найдены.";
+                return;
+            }
+
+            elements.noMoviesMessage.style.display = "none";
+            filteredMovies.forEach(movie => {
+                const movieCard = document.createElement("div");
+                movieCard.classList.add("movie-card");
+                movieCard.innerHTML = `
+                    <div class="movie-card__hero">
+                        ${movie.poster ? `<img src="${movie.poster}" alt="${movie.title}" class="movie-card__img">` : '<img src="https://via.placeholder.com/300x450" alt="No poster" class="movie-card__img">'}
+                    </div>
+                    <div class="movie-card__content">
+                        <div class="movie-card__title">
+                            <h1 class="heading__primary">${movie.title || "Без названия"} <i class="fas fa-fire"></i></h1>
+                            <div class="movie-card__tag movie-card__tag--1">${movie.genres ? movie.genres.split(",")[0] : "#unknown"}</div>
+                            ${movie.genres && movie.genres.split(",").length > 1 ? `<div class="movie-card__tag movie-card__tag--2">${movie.genres.split(",")[1]}</div>` : ""}
+                        </div>
+                        <p class="movie-card__description">${movie.description || "Описание отсутствует."}</p>
+                        <div class="movie-card__details">
+                            <p class="movie-card__detail"><img src="director.png" alt="Director" class="detail-icon">${movie.directors || "Не указан"}</p>
+                            <p class="movie-card__detail"><img src="actor.png" alt="Actor" class="detail-icon">${movie.actors || "Неизвестно"}</p>
+                            <p class="movie-card__detail"><img src="calendar.png" alt="Year" class="detail-icon">${movie.year || "Нет данных"}</p>
+                        </div>
+                    </div>
+                `;
+                movieCard.addEventListener("click", () => {
+                    window.location.href = `more.html?id=${movie.id}`;
+                });
+                elements.movieGrid.appendChild(movieCard);
+            });
+        }
+
+        function showMovieModal() {
+            elements.movieModal.style.display = "block";
+            resetForm();
+            populateMovieTable();
+        }
+
+        function resetForm() {
+            selectedMovieId = null;
+            uploadedPoster = null;
+            selectedDirectorsList = [];
+            selectedActorsList = [];
+            selectedGenresList = [];
+
+            document.getElementById("movie-id").value = "";
+            document.getElementById("title").value = "";
+            document.getElementById("year").value = "";
+            document.getElementById("description").value = "";
+            elements.posterInput.value = "";
+            elements.posterStatus.textContent = "";
+
+            elements.saveButton.style.display = "inline";
+            elements.updateButton.style.display = "none";
+            elements.deleteButton.style.display = "none";
+
+            populateSelect(elements.genreModal, allGenres, true);
+            updateSelectedItems(elements.selectedGenres, selectedGenresList, "genres");
+            updateSelectedItems(elements.selectedDirectors, selectedDirectorsList, "directors");
+            updateSelectedItems(elements.selectedActors, selectedActorsList, "actors");
+        }
+
+        function updateSelectedItems(container, items, listType) {
+            container.innerHTML = "";
+            if (!items || items.length === 0) {
+                container.innerHTML = "<span>Не выбрано</span>";
+            } else {
+                items.forEach(item => {
+                    const div = document.createElement("div");
+                    div.className = "selected-item";
+                    div.innerHTML = `<span>${item}</span><span class="remove-item">×</span>`;
+                    div.querySelector(".remove-item").onclick = () => {
+                        if (listType === "genres") {
+                            selectedGenresList = selectedGenresList.filter(i => i !== item);
+                            updateSelectedItems(container, selectedGenresList, "genres");
+                        } else if (listType === "directors") {
+                            selectedDirectorsList = selectedDirectorsList.filter(i => i !== item);
+                            updateSelectedItems(container, selectedDirectorsList, "directors");
+                        } else if (listType === "actors") {
+                            selectedActorsList = selectedActorsList.filter(i => i !== item);
+                            updateSelectedItems(container, selectedActorsList, "actors");
+                        }
+                        applyFilters();
+                    };
+                    container.appendChild(div);
+                });
+            }
+        }
+
+        if (elements.genreModal) {
+            elements.genreModal.onchange = function() {
+                const value = this.value;
+                if (value === "add-new") {
+                    addGenre();
+                    this.value = "";
+                } else if (value && value !== "" && !selectedGenresList.includes(value)) {
+                    selectedGenresList.push(value);
+                    updateSelectedItems(elements.selectedGenres, selectedGenresList, "genres");
+                    this.value = "";
+                    applyFilters();
+                }
+            };
+        }
+
+        if (elements.directorModal) {
+            elements.directorModal.onchange = function() {
+                const value = this.value;
+                if (value === "add-new") {
+                    addDirector();
+                    this.value = "";
+                } else if (value && !selectedDirectorsList.includes(value)) {
+                    selectedDirectorsList.push(value);
+                    updateSelectedItems(elements.selectedDirectors, selectedDirectorsList, "directors");
+                    this.value = "";
+                }
+            };
+        }
+
+        if (elements.actorsModal) {
+            elements.actorsModal.onchange = function() {
+                const value = this.value;
+                if (value === "add-new") {
+                    addActor();
+                    this.value = "";
+                } else if (value && !selectedActorsList.includes(value)) {
+                    selectedActorsList.push(value);
+                    updateSelectedItems(elements.selectedActors, selectedActorsList, "actors");
+                    this.value = "";
+                }
+            };
+        }
+
+        function populateMovieTable() {
+            elements.movieTableBody.innerHTML = "";
+
+            if (allMovies.length === 0) {
+                elements.movieTableBody.innerHTML = '<tr><td colspan="8">Фильмы не найдены</td></tr>';
+                return;
+            }
+
+            let role = null;
+            let userId = localStorage.getItem("userId");
+            let userLogin = null;
+
+            if (token) {
+                try {
+                    const payload = JSON.parse(atob(token.split('.')[1]));
+                    role = payload["http://schemas.microsoft.com/ws/2008/06/identity/claims/role"] || payload["role"];
+                    userLogin = payload["http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name"] || payload["name"];
+                } catch (e) {
+                    console.error("Ошибка декодирования токена:", e);
+                }
+            }
+
+            let moviesToShow = [];
+            if (role === "admin") {
+                moviesToShow = allMovies;
+            } else if (role === "user" && userLogin) {
+                moviesToShow = allMovies.filter(movie => movie.creator === userLogin);
+            } else {
+                elements.movieTableBody.innerHTML = '<tr><td colspan="8">Авторизуйтесь для просмотра</td></tr>';
+                return;
+            }
+
+            if (moviesToShow.length === 0) {
+                elements.movieTableBody.innerHTML = '<tr><td colspan="8">Фильмы не найдены</td></tr>';
+                return;
+            }
+
+            moviesToShow.forEach(movie => {
+                const row = document.createElement("tr");
+                row.innerHTML = `
+                    <td>${movie.title || "Без названия"}</td>
+                    <td>${movie.genres || "Нет жанров"}</td>
+                    <td>${movie.directors || "Нет режиссёров"}</td>
+                    <td>${movie.year || "Нет года"}</td>
+                    <td>${movie.actors || "Нет актёров"}</td>
+                    <td>${movie.poster ? '<img src="' + movie.poster + '" style="max-width: 50px;">' : "Нет"}</td>
+                    <td>${movie.description || "Нет описания"}</td>
+                    <td>${movie.creator || "Неизвестно"}</td>
+                `;
+                row.style.cursor = "pointer";
+                row.addEventListener("click", () => {
+                    editMovie(movie.id);
+                });
+                elements.movieTableBody.appendChild(row);
+            });
+        }
+
+        function editMovie(movieId) {
+            const movie = allMovies.find(m => m.id === movieId);
+            if (movie) {
+                selectedMovieId = movieId;
+                uploadedPoster = movie.poster;
+
+                selectedGenresList = (movie.genres && movie.genres.trim() !== "")
+                    ? movie.genres.split(", ").map(g => g.trim())
+                    : [];
+                selectedDirectorsList = (movie.directors && movie.directors.trim() !== "")
+                    ? movie.directors.split(", ").map(d => d.trim())
+                    : [];
+                selectedActorsList = (movie.actors && movie.actors.trim() !== "")
+                    ? movie.actors.split(", ").map(a => a.trim())
+                    : [];
+
+                document.getElementById("movie-id").value = movie.id;
+                document.getElementById("title").value = movie.title || "";
+                document.getElementById("year").value = movie.year || "";
+                document.getElementById("description").value = movie.description || "";
+
+                elements.saveButton.style.display = "none";
+                elements.updateButton.style.display = "inline";
+                elements.deleteButton.style.display = "inline";
+
+                elements.posterStatus.textContent = movie.poster ? "Текущий постер загружен" : "Постер не загружен";
+                elements.posterStatus.style.color = movie.poster ? "green" : "black";
+
+                updateSelectedItems(elements.selectedGenres, selectedGenresList, "genres");
+                updateSelectedItems(elements.selectedDirectors, selectedDirectorsList, "directors");
+                updateSelectedItems(elements.selectedActors, selectedActorsList, "actors");
+                applyFilters();
+            }
+        }
+
+        elements.addMovieButton.onclick = showMovieModal;
+        elements.addMovieUserButton.onclick = showMovieModal;
+        elements.applyFiltersButton.onclick = applyFilters;
+
+        elements.movieForm.onsubmit = async function(e) {
+            e.preventDefault();
+            const title = document.getElementById("title").value;
+            const year = document.getElementById("year").value;
+            const description = document.getElementById("description").value || "";
+            const genres = selectedGenresList.length > 0 ? selectedGenresList : [];
+            const directors = selectedDirectorsList.length > 0 ? selectedDirectorsList : [];
+            const actors = selectedActorsList.length > 0 ? selectedActorsList : [];
+            const poster = uploadedPoster || null;
+
+            if (genres.length === 0) {
+                alert("Пожалуйста, выберите хотя бы один жанр.");
+                return;
+            }
+
+            const movieData = {
+                title,
+                genres,
+                directors,
+                year,
+                description,
+                actors,
+                poster
+            };
+
+            try {
+                const response = await fetch(`${BASE_URL}/api/movies`, {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Authorization": `Bearer ${token}`
+                    },
+                    body: JSON.stringify(movieData)
+                });
+
+                if (!response.ok) {
+                    const errorText = await response.text();
+                    throw new Error(errorText);
+                }
+
+                elements.movieModal.style.display = "none";
+                loadMovies();
+            } catch (error) {
+                console.error("Ошибка при добавлении фильма:", error);
+                alert(`Ошибка: ${error.message}`);
+            }
+        };
+
+        elements.updateButton.onclick = async function() {
+            if (!selectedMovieId) return;
+
+            const title = document.getElementById("title").value;
+            const year = document.getElementById("year").value;
+            const description = document.getElementById("description").value;
+            const genres = selectedGenresList;
+            const directors = selectedDirectorsList;
+            const actors = selectedActorsList;
+            const poster = uploadedPoster;
+
+            if (genres.length === 0) {
+                alert("Пожалуйста, выберите хотя бы один жанр.");
+                return;
+            }
+
+            const movieData = {
+                title,
+                genres,
+                directors,
+                year,
+                description,
+                actors,
+                poster
+            };
+
+            try {
+                const response = await fetch(`${BASE_URL}/api/movies/${selectedMovieId}`, {
+                    method: "PUT",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Authorization": `Bearer ${token}`
+                    },
+                    body: JSON.stringify(movieData)
+                });
+
+                if (!response.ok) throw new Error(await response.text());
+
+                elements.movieModal.style.display = "none";
+                loadMovies();
+            } catch (error) {
+                console.error("Ошибка при обновлении фильма:", error);
+                alert(`Ошибка: ${error.message}`);
+            }
+        };
+
+        elements.deleteButton.onclick = async function() {
+            if (!selectedMovieId || !confirm("Вы уверены, что хотите удалить этот фильм?")) return;
+
+            try {
+                const response = await fetch(`${BASE_URL}/api/movies/${selectedMovieId}`, {
+                    method: "DELETE",
+                    headers: {
+                        "Authorization": `Bearer ${token}`
+                    }
+                });
+
+                if (!response.ok) throw new Error(await response.text());
+
+                elements.movieModal.style.display = "none";
+                loadMovies();
+            } catch (error) {
+                console.error("Ошибка при удалении фильма:", error);
+                alert(`Ошибка: ${error.message}`);
+            }
+        };
+
+        elements.downloadXmlButton.onclick = async function() {
+            if (!token) {
+                alert("Пожалуйста, авторизуйтесь для выгрузки данных.");
+                return;
+            }
+
+            try {
+                const response = await fetch(`${BASE_URL}/api/movies/export`, {
+                    method: "GET",
+                    headers: {
+                        "Authorization": `Bearer ${token}`,
+                        "Accept": "application/xml"
+                    }
+                });
+
+                if (!response.ok) {
+                    const errorText = await response.text();
+                    throw new Error(errorText);
+                }
+
+                const xmlText = await response.text();
+                const blob = new Blob([xmlText], { type: "application/xml" });
+                const url = window.URL.createObjectURL(blob);
+                const a = document.createElement("a");
+                a.href = url;
+                a.download = "movies_export.xml";
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                window.URL.revokeObjectURL(url);
+
+                alert("XML успешно выгружен!");
+            } catch (error) {
+                console.error("Ошибка при выгрузке XML:", error);
+                alert(`Ошибка: ${error.message}`);
+            }
+        };
+
+        elements.uploadXmlButton.onclick = function() {
+            if (!token) {
+                alert("Пожалуйста, авторизуйтесь для загрузки данных.");
+                return;
+            }
+            elements.xmlUploadInput.click();
+        };
+
+        elements.xmlUploadInput.addEventListener("change", async function(e) {
+            const file = e.target.files[0];
+            if (!file) return;
+
+            if (!file.name.toLowerCase().endsWith('.xml')) {
+                alert("Пожалуйста, выберите файл с расширением .xml");
+                elements.xmlUploadInput.value = "";
+                return;
+            }
+
+            try {
+                if (file.size === 0) {
+                    throw new Error("Выбранный файл пуст");
+                }
+
+                const text = await file.text();
+                if (!text.trim()) {
+                    throw new Error("Файл не содержит данных");
+                }
+
+                if (text.includes("<!DOCTYPE html>")) {
+                    throw new Error("Файл содержит HTML вместо чистого XML");
+                }
+
+                const parser = new DOMParser();
+                const xmlDoc = parser.parseFromString(text, "application/xml");
+                const parseError = xmlDoc.querySelector("parsererror");
+                if (parseError) {
+                    throw new Error(`Ошибка разбора XML файла: ${parseError.textContent || "Неизвестная ошибка"}`);
+                }
+
+                const movieNodes = xmlDoc.getElementsByTagName("movie");
+                if (movieNodes.length === 0) {
+                    throw new Error("В файле не найдено фильмов");
+                }
+
+                let userId = localStorage.getItem("userId") || "0";
+                if (token) {
+                    try {
+                        const payload = JSON.parse(atob(token.split('.')[1]));
+                        userId = payload["http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier"] || userId;
+                    } catch (e) {
+                        console.error("Ошибка декодирования токена:", e);
+                    }
+                }
+
+                const movies = Array.from(movieNodes).map(movie => ({
+                    title: movie.getElementsByTagName("title")[0]?.textContent || "",
+                    poster: movie.getElementsByTagName("poster")[0]?.textContent || "",
+                    information: movie.getElementsByTagName("information")[0]?.textContent || "",
+                    user: parseInt(movie.getElementsByTagName("creator")[0]?.textContent) || parseInt(userId),
+                    year: movie.getElementsByTagName("year")[0]?.textContent || ""
+                }));
+
+                for (let movie of movies) {
+                    if (!movie.title) {
+                        console.warn("Пропущено название фильма", movie);
+                        continue;
+                    }
+
+                    console.log("Отправляемые данные:", movie);
+                    const response = await fetch(`${BASE_URL}/api/movies/import`, {
+                        method: "POST",
+                        headers: {
+                            "Authorization": `Bearer ${token}`,
+                            "Content-Type": "application/json"
+                        },
+                        body: JSON.stringify(movie)
+                    });
+
+                    console.log("Статус ответа:", response.status);
+                    const textResponse = await response.text();
+                    console.log("Сырой ответ сервера:", textResponse);
+
+                    if (!response.ok) {
+                        throw new Error(`Ошибка импорта фильма (статус: ${response.status}): ${textResponse}`);
+                    }
+
+                    if (!textResponse.trim()) {
+                        throw new Error("Сервер вернул пустой ответ");
+                    }
+
+                    let result;
+                    try {
+                        result = JSON.parse(textResponse);
+                    } catch (jsonError) {
+                        throw new Error(`Ошибка разбора JSON: ${jsonError.message}. Сырой ответ: ${textResponse}`);
+                    }
+
+                    if (!result.success) {
+                        throw new Error(result.message || "Ошибка импорта фильма");
+                    }
+                }
+
+                alert("Все фильмы успешно импортированы!");
+                loadMovies();
+            } catch (error) {
+                console.error("Ошибка при импорте:", error);
+                console.log("Содержимое файла для диагностики:", await file.text().catch(() => "Не удалось прочитать файл"));
+                alert(`Ошибка: ${error.message}`);
+            } finally {
+                elements.xmlUploadInput.value = "";
+            }
+        });
+
+        async function showUsersModal() {
+            elements.usersModal.style.display = "block";
+            selectedUser = null;
+            updateUserActions();
+            await loadUsers();
+        }
+
+        async function loadUsers() {
+            try {
+                const response = await fetch(`${BASE_URL}/api/users`, {
+                    headers: {
+                        "Authorization": `Bearer ${token}`
+                    }
+                });
+                if (!response.ok) throw new Error(`Ошибка загрузки пользователей: ${response.statusText}`);
+                const users = await response.json();
+
+                elements.usersTableBody.innerHTML = "";
+                users.forEach(user => {
+                    const row = document.createElement("tr");
+                    const userId = user.idUser || "N/A";
+                    row.innerHTML = `
+                        <td>${userId}</td>
+                        <td>${user.login}</td>
+                        <td>${user.status}</td>
+                        <td></td>
+                    `;
+                    row.style.cursor = "pointer";
+                    row.addEventListener("click", () => {
+                        selectUser(user, row);
+                    });
+                    elements.usersTableBody.appendChild(row);
+                });
+            } catch (error) {
+                console.error("Ошибка при загрузке пользователей:", error);
+                elements.usersTableBody.innerHTML = `<tr><td colspan="4">Ошибка: ${error.message}</td></tr>`;
+            }
+        }
+
+        function selectUser(user, row) {
+            selectedUser = user;
+            const rows = elements.usersTableBody.getElementsByTagName("tr");
+            for (let r of rows) {
+                r.classList.remove("selected");
+            }
+            row.classList.add("selected");
+            updateUserActions();
+        }
+
+        function updateUserActions() {
+            if (!selectedUser) {
+                elements.userActionsContainer.style.display = "none";
+                elements.selectedUserText.textContent = "";
+                elements.userActionButtons.innerHTML = "";
+                return;
+            }
+
+            elements.userActionsContainer.style.display = "block";
+            elements.selectedUserText.textContent = `Выбран пользователь: ${selectedUser.login}`;
+            elements.userActionButtons.innerHTML = "";
+
+            const deleteBtn = document.createElement("button");
+            deleteBtn.className = "delete-button";
+            deleteBtn.textContent = "Удалить";
+            deleteBtn.onclick = () => deleteUser(selectedUser.login);
+            elements.userActionButtons.appendChild(deleteBtn);
+
+            if (selectedUser.status !== "admin") {
+                const promoteBtn = document.createElement("button");
+                promoteBtn.className = "promote-button";
+                promoteBtn.textContent = "Повысить";
+                promoteBtn.onclick = () => promoteUser(selectedUser.login);
+                elements.userActionButtons.appendChild(promoteBtn);
+            }
+
+            if (selectedUser.status !== "user") {
+                const demoteBtn = document.createElement("button");
+                demoteBtn.className = "demote-button";
+                demoteBtn.textContent = "Понизить";
+                demoteBtn.onclick = () => demoteUser(selectedUser.login);
+                elements.userActionButtons.appendChild(demoteBtn);
+            }
+        }
+
+        async function promoteUser(login) {
+            try {
+                const response = await fetch(`${BASE_URL}/api/users/promote`, {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Authorization": `Bearer ${token}`
+                    },
+                    body: JSON.stringify({ login })
+                });
+                const result = await response.json();
+                if (!response.ok) throw new Error(result.message || "Ошибка повышения статуса");
+                alert(result.message);
+                await loadUsers();
+                selectedUser = null;
+                updateUserActions();
+            } catch (error) {
+                console.error("Ошибка при повышении статуса:", error);
+                alert(`Ошибка: ${error.message}`);
+            }
+        }
+
+        async function demoteUser(login) {
+            try {
+                const response = await fetch(`${BASE_URL}/api/users/demote`, {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Authorization": `Bearer ${token}`
+                    },
+                    body: JSON.stringify({ login })
+                });
+                const result = await response.json();
+                if (!response.ok) throw new Error(result.message || "Ошибка понижения статуса");
+                alert(result.message);
+                await loadUsers();
+                selectedUser = null;
+                updateUserActions();
+            } catch (error) {
+                console.error("Ошибка при понижении статуса:", error);
+                alert(`Ошибка: ${error.message}`);
+            }
+        }
+
+        async function deleteUser(login) {
+            if (!confirm(`Вы уверены, что хотите удалить пользователя ${login}?`)) return;
+            try {
+                const response = await fetch(`${BASE_URL}/api/users`, {
+                    method: "DELETE",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Authorization": `Bearer ${token}`
+                    },
+                    body: JSON.stringify({ login })
+                });
+                const result = await response.json();
+                if (!response.ok) throw new Error(result.message || "Ошибка удаления пользователя");
+                alert(result.message);
+                await loadUsers();
+                selectedUser = null;
+                updateUserActions();
+            } catch (error) {
+                console.error("Ошибка при удалении пользователя:", error);
+                alert(`Ошибка: ${error.message}`);
+            }
+        }
+
+        window.onload = function() {
+            checkAuth();
+            loadMovies();
+        };
+    </script>
 </body>
 </html>

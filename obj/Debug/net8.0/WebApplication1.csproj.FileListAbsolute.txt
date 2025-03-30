@@ -22,8 +22,6 @@ C:\Users\jeived\Desktop\WebApplication1\WebApplication1\bin\Debug\net8.0\Microso
 C:\Users\jeived\Desktop\WebApplication1\WebApplication1\bin\Debug\net8.0\Microsoft.IdentityModel.JsonWebTokens.dll
 C:\Users\jeived\Desktop\WebApplication1\WebApplication1\bin\Debug\net8.0\Microsoft.IdentityModel.Logging.dll
 C:\Users\jeived\Desktop\WebApplication1\WebApplication1\bin\Debug\net8.0\Microsoft.IdentityModel.Tokens.dll
-C:\Users\jeived\Desktop\WebApplication1\WebApplication1\bin\Debug\net8.0\MySqlConnector.dll
-C:\Users\jeived\Desktop\WebApplication1\WebApplication1\bin\Debug\net8.0\Pomelo.EntityFrameworkCore.MySql.dll
 C:\Users\jeived\Desktop\WebApplication1\WebApplication1\bin\Debug\net8.0\System.IdentityModel.Tokens.Jwt.dll
 C:\Users\jeived\Desktop\WebApplication1\WebApplication1\obj\Debug\net8.0\WebApplication1.csproj.AssemblyReference.cache
 C:\Users\jeived\Desktop\WebApplication1\WebApplication1\obj\Debug\net8.0\WebApplication1.GeneratedMSBuildEditorConfig.editorconfig
@@ -50,3 +48,6 @@ C:\Users\jeived\Desktop\WebApplication1\WebApplication1\obj\Debug\net8.0\WebAppl
 C:\Users\jeived\Desktop\WebApplication1\WebApplication1\obj\Debug\net8.0\ref\WebApplication1.dll
 C:\Users\jeived\Desktop\WebApplication1\WebApplication1\bin\Debug\net8.0\WebApplication1.staticwebassets.runtime.json
 C:\Users\jeived\Desktop\WebApplication1\WebApplication1\obj\Debug\net8.0\WebApplication1.sourcelink.json
+C:\Users\jeived\Desktop\WebApplication1\WebApplication1\bin\Debug\net8.0\libman.json
+C:\Users\jeived\Desktop\WebApplication1\WebApplication1\bin\Debug\net8.0\MySqlConnector.dll
+C:\Users\jeived\Desktop\WebApplication1\WebApplication1\bin\Debug\net8.0\Pomelo.EntityFrameworkCore.MySql.dll

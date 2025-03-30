@@ -20,7 +20,7 @@ const elements = {
 async function loadMovieDetails() {
     if (!movieId) {
         alert("ID фильма не указан!");
-        window.location.href = "index.html";
+        window.location.href = "homepage.html";
         return;
     }
 
@@ -56,7 +56,7 @@ async function loadMovieDetails() {
     } catch (error) {
         console.error("Ошибка при загрузке деталей фильма:", error);
         alert(`Ошибка: ${error.message}`);
-        window.location.href = "index.html";
+        window.location.href = "homepage.html";
     }
 }
 
@@ -77,8 +77,8 @@ window.onload = async function () {
     await loadMovieDetails();
 
     // Обработчик возврата на главную страницу
-    document.querySelector("a[href='index.html']").addEventListener("click", (e) => {
+    document.querySelector("a[href='homepage.html']").addEventListener("click", (e) => {
         e.preventDefault();
-        window.location.href = "index.html";
+        window.location.href = "homepage.html";
     });
 };
