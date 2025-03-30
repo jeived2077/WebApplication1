@@ -4,16 +4,7 @@ namespace WebApplication1
 {
     public class StaticsService
     {
-        public DbSet<Users> User { get; set; }
-        public DbSet<Movie> Movies { get; set; }
-        public DbSet<Actor> Actors { get; set; }
-        public DbSet<GenreFilms> Genres { get; set; }
-        public DbSet<DirectorFilms> Directors { get; set; }
-        public DbSet<FilmToActor> FilmToActors { get; set; }
-        public DbSet<FilmToDirector> FilmToDirectors { get; set; }
-        public DbSet<FavoriteFilms> FavoriteFilms { get; set; }
-        public DbSet<ViewFilms> ViewFilms { get; set; }
-        public DbSet<FilmToGenre> FilmToGenres { get; set; }
+       
         private readonly Database _db;
         public StaticsService(Database db)
         {
@@ -22,10 +13,10 @@ namespace WebApplication1
         
         public List<object> ListGenresStatics()
         {
-            var genres = from g in Genres
-                         join fg in FilmToGenres on g.Idgenre equals fg.Idgenre
-                         join fm in Movies on fg.Idfilms equals fm.Idfims
-                         join vf in ViewFilms on fm.Idfims equals vf.Films
+            var genres = from g in _db.Genres
+                         join fg in _db.FilmToGenres on g.Idgenre equals fg.Idgenre
+                         join fm in _db.Movies on fg.Idfilms equals fm.Idfims
+                         join vf in _db.ViewFilms on fm.Idfims equals vf.Films
                          group fg by new { g.Name, g.Idgenre } into grouped
                          select new
                          {
@@ -40,10 +31,10 @@ namespace WebApplication1
         
         public List<object> ListActorsStatics()
         {
-            var actors = from a in Actors
-                         join fta in FilmToActors on a.Idactor equals fta.Idactor
-                         join fm in Movies on fta.Idfilms equals fm.Idfims
-                         join vf in ViewFilms on fm.Idfims equals vf.Films
+            var actors = from a in _db.Actors
+                         join fta in _db.FilmToActors on a.Idactor equals fta.Idactor
+                         join fm in _db.Movies on fta.Idfilms equals fm.Idfims
+                         join vf in _db.ViewFilms on fm.Idfims equals vf.Films
                          group fta by new { a.Name, a.Idactor } into grouped
                          select new
                          {
@@ -57,10 +48,10 @@ namespace WebApplication1
 
         public List<object> ListDirectorsStatics()
         {
-            var directors = from d in Directors
-                            join ftd in FilmToDirectors on d.Iddirector equals ftd.Iddirector
-                            join fm in Movies on ftd.Idfilms equals fm.Idfims
-                            join vf in ViewFilms on fm.Idfims equals vf.Films
+            var directors = from d in _db.Directors
+                            join ftd in _db.FilmToDirectors on d.Iddirector equals ftd.Iddirector
+                            join fm in _db.Movies on ftd.Idfilms equals fm.Idfims
+                            join vf in _db.ViewFilms on fm.Idfims equals vf.Films
                             group ftd by new { d.Name, d.Iddirector } into grouped
                             select new
                             {
@@ -74,8 +65,8 @@ namespace WebApplication1
 
         public List<object> ListYearsStatics()
         {
-            var years = from fm in Movies
-                        join vf in ViewFilms on fm.Idfims equals vf.Films
+            var years = from fm in _db.Movies
+                        join vf in _db.ViewFilms on fm.Idfims equals vf.Films
                         group fm by fm.Years into grouped
                         select new
                         {

@@ -4,21 +4,13 @@ namespace WebApplication1
 {
     public class DirectorService
     {
-        public DbSet<Users> User { get; set; }
-        public DbSet<Movie> Movies { get; set; }
-        public DbSet<Actor> Actors { get; set; }
-        public DbSet<GenreFilms> Genres { get; set; }
-        public DbSet<DirectorFilms> Directors { get; set; }
-        public DbSet<FilmToActor> FilmToActors { get; set; }
-        public DbSet<FilmToDirector> FilmToDirectors { get; set; }
-        public DbSet<FavoriteFilms> FavoriteFilms { get; set; }
-        public DbSet<ViewFilms> ViewFilms { get; set; }
-        public DbSet<FilmToGenre> FilmToGenres { get; set; }
         private readonly Database _db;
+
         public DirectorService(Database db)
         {
             _db = db ?? throw new ArgumentNullException(nameof(db));
         }
+
         public List<string> DirectorList()
         {
             if (!_db.TestConnection())
@@ -26,34 +18,29 @@ namespace WebApplication1
                 Console.WriteLine("Не удалось подключиться к базе данных");
                 return new List<string>();
             }
-
-            var director = Directors.Select(g => g.Name).ToList();
-
-
-            return director;
+            return _db.Directors.Select(d => d.Name).ToList();
         }
+
         public (bool Success, string Message) DirectorAdd(string firstName, string lastName)
         {
             try
             {
                 string fullName = $"{firstName} {lastName}".Trim();
                 if (string.IsNullOrEmpty(fullName)) return (false, "Данные режиссёра не может быть пустым");
-                if (Actors.Any(a => a.Name == fullName)) return (false, $"Режиссёр '{fullName}' уже существует");
+                if (_db.Directors.Any(d => d.Name == fullName)) return (false, $"Режиссёр '{fullName}' уже существует"); // Check Directors, not Actors
                 var newDirector = new DirectorFilms
                 {
-
-                    Name = $"{firstName} {lastName}"
+                    Iddirector = _db.Directors.Any() ? _db.Directors.Max(d => d.Iddirector) + 1 : 1,
+                    Name = fullName
                 };
-                Directors.Add(newDirector);
+                _db.Directors.Add(newDirector);
                 _db.SaveChanges();
-                return (true, $"Актёр '{fullName}' успешно добавлен");
+                return (true, $"Режиссёр '{fullName}' успешно добавлен"); // Fixed message
             }
-
-
             catch (Exception ex)
             {
                 return (false, $"Ошибка при добавлении режиссёра: {ex.Message}");
             }
         }
     }
-}
+} 

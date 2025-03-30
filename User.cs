@@ -10,16 +10,6 @@ namespace WebApplication1
 {
     public class AuthService
     {
-        public DbSet<Users> User { get; set; }
-        public DbSet<Movie> Movies { get; set; }
-        public DbSet<Actor> Actors { get; set; }
-        public DbSet<GenreFilms> Genres { get; set; }
-        public DbSet<DirectorFilms> Directors { get; set; }
-        public DbSet<FilmToActor> FilmToActors { get; set; }
-        public DbSet<FilmToDirector> FilmToDirectors { get; set; }
-        public DbSet<FavoriteFilms> FavoriteFilms { get; set; }
-        public DbSet<ViewFilms> ViewFilms { get; set; }
-        public DbSet<FilmToGenre> FilmToGenres { get; set; }
         private readonly Database _db;
         private static readonly byte[] StaticSalt = Encoding.UTF8.GetBytes("MyStaticSalt1234567890");
 
@@ -34,7 +24,7 @@ namespace WebApplication1
             try
             {
                 if (!_db.TestConnection()) return (false, null, "Не удалось подключиться к базе данных");
-                if (User.Any(u => u.Login == login)) return (false, null, "Логин уже занят");
+                if (_db.User.Any(u => u.Login == login)) return (false, null, "Логин уже занят");
                 if (password.Length < 8) return (false, null, "Пароль должен содержать минимум 8 символов");
 
 
@@ -48,13 +38,13 @@ namespace WebApplication1
 
                 var newUser = new Users
                 {
-                    IdUser = User.Any() ? User.Max(u => u.IdUser) + 1 : 1,
+                    IdUser = _db.User.Any() ? _db.User.Max(u => u.IdUser) + 1 : 1,
                     Login = login,
                     Password = HashPassword(password),
                     Status = "user"
                 };
 
-                User.Add(newUser);
+                _db.User.Add(newUser);
                 _db.SaveChanges();
 
                 string token = GenerateJwtToken(newUser);
@@ -84,7 +74,7 @@ namespace WebApplication1
             try
             {
                 if (!_db.TestConnection()) return (false, null, null, null, "Не удалось подключиться к базе данных");
-                var user = User.FirstOrDefault(u => u.Login == login);
+                var user = _db.User.FirstOrDefault(u => u.Login == login);
                 if (user == null) return (false, null, null, null, "Пользователь не найден");
 
                 string hashedInputPassword = HashPassword(password);
@@ -122,7 +112,7 @@ namespace WebApplication1
 
         public void ListingUser()
         {
-            var users = User.ToList();
+            var users = _db.User.ToList();
             Console.WriteLine("Users list:");
             foreach (Users u in users)
             {

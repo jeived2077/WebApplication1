@@ -18,7 +18,17 @@ builder.Services.AddDbContext<Database>(options =>
     string connectionString = $"Server={server};Port={port};Database={database};Uid={username};Pwd={password};";
     options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString));
 });
-
+builder.Services.AddScoped<Database>();
+builder.Services.AddScoped<AuthService>();
+builder.Services.AddScoped<FilmService>();
+builder.Services.AddScoped<ActorsService>();
+builder.Services.AddScoped<GenreService>();
+builder.Services.AddScoped<DirectorService>();
+builder.Services.AddScoped<AdminService>();
+builder.Services.AddScoped<StaticServiceFilms>();
+builder.Services.AddScoped<StaticsService>();
+builder.Services.AddScoped<XMLservice>();
+builder.Services.AddScoped<YearsService>();
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowAll", builder =>
@@ -158,17 +168,10 @@ app.MapGet("/api/movies", (FilmService film, ActorsService actorserv, GenreServi
     {
         var genres = genre.ListGenre();
         var directors = director.DirectorList();
-        var actors = actorserv.ActorList(); 
+        var actors = actorserv.ActorList();
         var movies = film.ListingFilms();
 
-        var result = new
-        {
-            genres,
-            directors,
-            actors,
-            movies
-        };
-
+        var result = new { genres, directors, actors, movies };
         return Results.Ok(result);
     }
     catch (Exception ex)

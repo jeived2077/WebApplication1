@@ -6,16 +6,7 @@ namespace WebApplication1
 {
     public class XMLservice
     {
-        public DbSet<Users> User { get; set; }
-        public DbSet<Movie> Movies { get; set; }
-        public DbSet<Actor> Actors { get; set; }
-        public DbSet<GenreFilms> Genres { get; set; }
-        public DbSet<DirectorFilms> Directors { get; set; }
-        public DbSet<FilmToActor> FilmToActors { get; set; }
-        public DbSet<FilmToDirector> FilmToDirectors { get; set; }
-        public DbSet<FavoriteFilms> FavoriteFilms { get; set; }
-        public DbSet<ViewFilms> ViewFilms { get; set; }
-        public DbSet<FilmToGenre> FilmToGenres { get; set; }
+        
         private readonly Database _db;
         public XMLservice(Database db)
         {
@@ -35,7 +26,7 @@ namespace WebApplication1
 
                 Console.WriteLine($"Размер данных для Information: {Encoding.UTF8.GetByteCount(information)} байт");
 
-                bool filmExists = Movies.Any(m => m.Namefilms == title && m.Years == year);
+                bool filmExists = _db.Movies.Any(m => m.Namefilms == title && m.Years == year);
                 if (filmExists)
                     return (false, $"Фильм '{title}' ({year}) уже существует на сайте");
 
@@ -47,7 +38,7 @@ namespace WebApplication1
                     Years = year,
                     Users = user
                 };
-                Movies.Add(movie);
+                _db.Movies.Add(movie);
                 _db.SaveChanges();
 
                 return (true, $"Фильм '{title}' успешно импортирован");
@@ -72,7 +63,7 @@ namespace WebApplication1
                     return "<error>Не удалось подключиться к базе данных</error>";
                 }
 
-                var movies = Movies.Select(m => new
+                var movies = _db.Movies.Select(m => new
                 {
                     m.Idfims,
                     m.Namefilms,
